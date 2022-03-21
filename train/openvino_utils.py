@@ -32,17 +32,16 @@ def torch_to_onnx(
                   dummy_input, # model input (or a tuple for multiple inputs)
                   onnx_model_path, # where to save the model (can be a file or file-like object)
                   training = False,
-                  export_params = True,        # store the trained parameter weights inside the model file
-                  opset_version = 11,          # the ONNX version to export the model to
-                  do_constant_folding = True,  # whether to execute constant folding for optimization
-                  input_names = ['images'],   # the model's input names
+                  export_params = True, # store the trained parameter weights inside the model file
+                  opset_version = 11, # the ONNX version to export the model to
+                  do_constant_folding = True, # whether to execute constant folding for optimization
+                  input_names = ['images'], # the model's input names
                   output_names = ['output'], # the model's output names
                   dynamic_axes = dynamic_axes)
     
     print(f"Onnx model saved to {onnx_model_path}")
 
     if simplify:
-
         model_onnx = onnx.load(onnx_model_path)
         model_onnx, check = onnxsim.simplify(
                     model_onnx,
@@ -55,8 +54,11 @@ def torch_to_onnx(
 
 
 def load_onnx_model(path):
+    # load the model from the path
     model = onnx.load(path)
+    # check the model
     onnx.checker.check_model(model)
+
     return model
 
 def test_onnx_model(torch_model, onnx_model_path, batch_size, input_shape):

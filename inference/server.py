@@ -49,6 +49,6 @@ def video_feed():
     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
-    # run the app, debug needs to be false becuase it will try to reconnect to the ncs2
+    # run the app, debug needs to be false becuase it will try to reconnect to the ncs2 if debug is true
     app.run(debug=False, host="0.0.0.0")
 

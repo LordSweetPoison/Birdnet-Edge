@@ -23,7 +23,7 @@ Although this project is specific to birds the potential of the system goes far 
     - ML Framework: PyTorch 
 
 ## Why Edge matters
-It is a fair question to ask, why not just send the photos to the cloud? In some situations, doing inference in the cloud is best. Perhaps you have low inference volumn or you're service is already in the cloud. Cloud computing is pretty cheep, easily scaled, and you don't need to own any depriecated hardware. However, cloud computing and machine learning is growing in compute at a rapid rate RATE HERE. Simimalry, Plus, increased wireless transmission rate are going to further increase the demand for cloud servers and clog backhaul infrastructure. While radio communication is increasing with 5G, the core network of 5G, where cell towers and servers communcate through fiber optics and wire,  is built on the core network of the 4G LTE system. All of this will increase the costs of cloud computing and add latency to communication between you and the cloud.
+It is a fair question to ask, why not just send the photos to the cloud? In some situations, doing inference in the cloud is best. Perhaps you have low inference volumn or you're service is already in the cloud. Cloud computing is pretty cheep, easily scaled, and you don't need to own any depriecated hardware. However, cloud computing and machine learning is growing in compute at a rapid rate of RATE HERE. Simimalry, Plus, increased wireless transmission rate are going to further increase the demand for cloud servers and clog backhaul infrastructure. While radio communication is increasing with 5G, the core network of 5G, where cell towers and servers communcate through fiber optics and wire,  is built on the core network of the 4G LTE system. All of this will increase the costs of cloud computing and add latency to communication between you and the cloud.
 
 Simply, Edge matters becuase it is needed to take advatage of machine when latency and data volume is an issue. For example, any mission critical systems will not be able to deal with latency at the edge. Likewise, any application that requires inference on significantly large data will be bottle necked by backhaul speeds. 
 
@@ -38,7 +38,7 @@ Communication across the 'backhaul' can limit the amount of data you can send be
 INSERT BLOCK DIAGRAM
 
 ## Metrics
- show improving accuracy, recall, precision
+show improving accuracy, recall, precision
 
 ## OpenVino 
 OpenVinos is intels inference API/Framework that allows you to do inference on the neural compute stick. The API abstracts the hardware away so you can use the same code tos do inference on any Intel processor that has OpenVino support. This is especially nice becuase you can debug logic on your Intel CPU before you deploy the network onto the edge device. 
@@ -46,7 +46,7 @@ OpenVinos is intels inference API/Framework that allows you to do inference on t
 Setting up OpenVino on the RaspberryPi is pretty straight forward as long as you have the Buster distro of Raspbian, this caused me quite a headache and a few hours. Just follow the directions from the [OpenVino Docs](ADD LINK). 
 
 ## Yolov5n
-Yolov5n is a very popular one shot object detection algorithm. It is the smallest of the networks in its gernation with less than 2 million parameters, making inference extra fast. Sadley, The Myraid processor on the Neural Compute Stick does not spport some of the operations near the output of the model. Luckily for you, these operations are not too compute heavy and I took the time to write code to turn the output of the last convolutional layer into workable predictions. 
+Yolov5n is a very popular one shot object detection algorithm. It is the smallest of the networks in its gernation with less than 2 million parameters, making inference extra fast. Sadley, The Myraid processor on the Neural Compute Stick does not spport some of the operations near the output of the model. Luckily for you, these operations are not too compute heavy and I took the time to write code to turn the output of the last convolutional layer into sworkable predictions. 
 
 With USB 3 on my laptop the Neural compute stick can do inference on an image in ~ 140 ms.  This is lowered on the RaspberryPi 3 since it uses USB 2, creating a IO bottle neck. A RaspberryPi 4 should be able to hit a similar inference as mhy laptop since it uses USB 3. I am not too concerned with realtime inference since birds stay at a bird feeder for more than a few seconds at a time. 
 
@@ -57,6 +57,6 @@ Roboflow is a SaaS (Software as a service) start up providing some great tools f
 ## Training 
 
 ## Intel Habana on AWS
-Talk about stats and what the habana does 
+Talk about stats and what habana does 
 
 ## 

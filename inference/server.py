@@ -23,7 +23,6 @@ app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
 
 # define celery
 celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
-celery.conf.update(app.config)
 
 # set up nsc2 and camera only if name is main
 if __name__ == "__main__":
@@ -42,7 +41,6 @@ LOGGER = print
 
 @celery.task
 def async_upload_photo(to_post):
-    print('starting async func')
     # define daatset
     dataset = 'birdcamid'
 
@@ -56,7 +54,6 @@ def async_upload_photo(to_post):
         f"&name={photo_name}.jpg",
         "&split=train"
     ])
-    print('posting request')
     # post request to upload photo
     r = requests.post(upload_url, data = to_post, headers = {
         "Content-Type": "application/x-www-form-urlencoded"

@@ -17,8 +17,6 @@ from roboflow_utils import upload_cv2_image
 
 app = Flask(__name__)
 
-print('name:', __name__)
-
 # define celery redis location 
 app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
 app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
@@ -26,14 +24,16 @@ app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
 # define celery
 celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
 
-model_name = 'yolov5n'
-device = 'MYRIAD'
+# set up nsc2 only if name is main
+if __name__ == "__main__":
+    model_name = 'yolov5n'
+    device = 'MYRIAD'
 
-print('Setting up network for Intel NCS2')
+    print('Setting up network for Intel NCS2')
 
-object_detector = ObjectDetector(model_name, device)
+    object_detector = ObjectDetector(model_name, device)
 
-print('Intel NCS2 succesfully initiated')
+    print('Intel NCS2 succesfully initiated')
 
 camera = cv2.VideoCapture(0)
 

@@ -41,7 +41,7 @@ LOGGER = print
 
 @celery.task
 def async_upload_photo(to_post):
-    print
+    print('starting async func')
     # define daatset
     dataset = 'birdcamid'
 
@@ -55,7 +55,7 @@ def async_upload_photo(to_post):
         f"&name={photo_name}.jpg",
         "&split=train"
     ])
-
+    print('posting request')
     # post request to upload photo
     r = requests.post(upload_url, data = to_post, headers = {
         "Content-Type": "application/x-www-form-urlencoded"
@@ -74,7 +74,16 @@ def gen_frames():
 
         # get the image with bounding boxes and post that online
         detections, birds_in_photo = object_detector(frame, return_detected = True)
-        
+
+        # encode the image then convert to bytes 
+        _, buffer = cv2.imencode('.jpg', detections)
+        out = buffer.tobytes()
+
+        # yield the output 
+        yield (b'--frame\r\n'
+                b'Content-Type: image/jpeg\r\n\r\n' + out + b'\r\n')
+
+                
         # if birds are in the photo, save the image to be uploaded after sunset
         if birds_in_photo:
             # resize the image to size
@@ -88,14 +97,6 @@ def gen_frames():
 
             # async send photo to roboflow
             async_upload_photo.apply_async(args = [to_post])
-
-        # encode the image then convert to bytes 
-        _, buffer = cv2.imencode('.jpg', detections)
-        out = buffer.tobytes()
-
-        # yield the output 
-        yield (b'--frame\r\n'
-                b'Content-Type: image/jpeg\r\n\r\n' + out + b'\r\n')
 
 @app.route('/')
 def index():

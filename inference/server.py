@@ -1,12 +1,25 @@
 import cv2
-from cv2 import exp
+import datetime 
 from infer import ObjectDetector
 
 from flask import Flask, render_template, Response
 
+from celery import Celery
+import celery
+
 from openvino.inference_engine import IECore
 
+from roboflow_utils import upload_cv2_image
+
 app = Flask(__name__)
+
+
+# define celery redis location 
+app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
+app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
+
+# define celery
+celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
 
 model_name = 'yolov5n'
 device = 'MYRIAD'
@@ -21,6 +34,11 @@ camera = cv2.VideoCapture(0)
 
 LOGGER = print
 
+@celery.task
+def async_upload_photo(image, dataset = 'birdcamid', size = (640, 640)):
+    upload_cv2_image(image, dataset, size)
+
+
 def gen_frames():  
     while True:
         success, frame = camera.read()  # read the camera frame
@@ -31,7 +49,12 @@ def gen_frames():
 
         # get the image with bounding boxes and post that online
         detections, birds_in_photo = object_detector(frame, return_detected = True)
-
+        
+        # if birds are in the photo, save the image to be uploaded after sunset
+        if birds_in_photo:
+            # async send photo in 3 seconds
+            async_upload_photo.apply_async(args = [frame], countdown = 3)
+            
         # encode the image then convert to bytes 
         _, buffer = cv2.imencode('.jpg', detections)
         out = buffer.tobytes()

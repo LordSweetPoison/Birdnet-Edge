@@ -77,10 +77,6 @@ def gen_frames():
         _, buffer = cv2.imencode('.jpg', detections)
         out = buffer.tobytes()
 
-        # yield the output 
-        yield (b'--frame\r\n'
-                b'Content-Type: image/jpeg\r\n\r\n' + out + b'\r\n')
-                
         # if birds are in the photo send to celery to upload
         if birds_in_photo:
             # resize the image to size
@@ -91,11 +87,17 @@ def gen_frames():
 
             # convert buffer to bytes than to ascii
             to_post = base64.b64encode(buffer).decode('ascii')
-
+            print('0')
             # async send photo to roboflow
             async_upload_photo.apply_async(args = [to_post])
+            print('1')
 
-@app.route('/')
+        # yield the output 
+        yield (b'--frame\r\n'
+                b'Content-Type: image/jpeg\r\n\r\n' + out + b'\r\n')
+                
+
+@app.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
     

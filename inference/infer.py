@@ -246,7 +246,10 @@ class ObjectDetector():
 
         # draw the bounding boxes with labels 
         img_out = draw_boxes(img, objects, self.num_classes)
-
+        
+        if return_detected:
+            # return img_out and a boolen representing if objects were detected 
+            return img_out, len(objects) > 0
         return img_out
 
 if __name__ == "__main__":

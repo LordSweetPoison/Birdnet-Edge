@@ -72,7 +72,7 @@ def gen_frames():
         # if birds are in the photo, save the image to be uploaded after sunset
         if birds_in_photo:
             # resize the image to size
-            image = cv2.resize(image, (640, 640))
+            image = cv2.resize(frame, (640, 640))
 
             # encode the buffer
             _, buffer = cv2.imencode('.jpg', image)

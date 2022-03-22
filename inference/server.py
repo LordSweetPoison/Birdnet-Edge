@@ -99,7 +99,7 @@ def gen_frames():
 def index():
     return render_template('index.html')
     
-@app.route('/video_feed', methods=['POST'])
+@app.route('/video_feed', methods=['GET', 'POST'])
 def video_feed():
     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 

@@ -10,6 +10,7 @@
 !inference/server.py
 !inference/roboflow_utils.py
 !inference/run_redis.sh
+!inference/requirements.txt
 
 # training files not to ignore 
 !train/openvino_utils.py

@@ -1,12 +1,13 @@
 import cv2
 import datetime 
+import requests
+import base64
+
 from infer import ObjectDetector
 
 from flask import Flask, render_template, Response
 
 from celery import Celery
-
-import requests
 
 from config import ROBOFLOW_PUBLIC, ROBOFLOW_PRIVATE
 

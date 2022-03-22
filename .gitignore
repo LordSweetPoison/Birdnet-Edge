@@ -9,7 +9,7 @@
 !inference/infer.py
 !inference/server.py
 !inference/roboflow_utils.py
-!inference/run_redis.sssh
+!inference/run_redis.sh
 
 # training files not to ignore 
 !train/openvino_utils.py

@@ -4,6 +4,7 @@
 # main files not to ignore
 !README.md
 !.gitignore
+!LICENSE
 
 # inference files not to ignore 
 !inference/infer.py

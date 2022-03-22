@@ -82,9 +82,8 @@ def gen_frames():
         # yield the output 
         yield (b'--frame\r\n'
                 b'Content-Type: image/jpeg\r\n\r\n' + out + b'\r\n')
-
                 
-        # if birds are in the photo, save the image to be uploaded after sunset
+        # if birds are in the photo send to celery process to upload
         if birds_in_photo:
             # resize the image to size
             image = cv2.resize(frame, (640, 640))
@@ -96,7 +95,7 @@ def gen_frames():
             to_post = base64.b64encode(buffer).decode('ascii')
 
             # async send photo to roboflow
-            async_upload_photo.apply_async(args = [to_post])
+            #async_upload_photo.apply_async(args = [to_post])
 
 @app.route('/')
 def index():

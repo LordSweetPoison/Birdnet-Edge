@@ -5,7 +5,10 @@ from infer import ObjectDetector
 from flask import Flask, render_template, Response
 
 from celery import Celery
-import celery
+
+import requests
+
+from config import ROBOFLOW_PUBLIC, ROBOFLOW_PRIVATE
 
 from openvino.inference_engine import IECore
 
@@ -35,8 +38,24 @@ camera = cv2.VideoCapture(0)
 LOGGER = print
 
 @celery.task
-def async_upload_photo(image, dataset = 'birdcamid', size = (640, 640)):
-    upload_cv2_image(image, dataset, size)
+def async_upload_photo(to_post):
+    # define daatset
+    dataset = 'birdcamid'
+
+    photo_name = datetime.now().strftime("%d%b%Y%H%M%S")
+
+    # create upload url
+    upload_url = "".join([
+        f"https://api.roboflow.com/dataset/{dataset}/upload",
+        f"?api_key={ROBOFLOW_PRIVATE}",
+        f"&name={photo_name}.jpg",
+        "&split=train"
+    ])
+
+    # post request to upload photo
+    r = requests.post(upload_url, data = to_post, headers = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    })
 
 
 def gen_frames():  
@@ -52,9 +71,17 @@ def gen_frames():
         
         # if birds are in the photo, save the image to be uploaded after sunset
         if birds_in_photo:
+            # resize the image to size
+            image = cv2.resize(image, (640, 640))
+
+            # encode the buffer
+            _, buffer = cv2.imencode('.jpg', image)
+
+            # convert buffer to bytes than to ascii
+            to_post = base64.b64encode(buffer).decode('ascii')
             # async send photo in 3 seconds
-            async_upload_photo.apply_async(args = [frame], countdown = 3)
-            
+            async_upload_photo.apply_async(args = [to_post], countdown = 3)
+
         # encode the image then convert to bytes 
         _, buffer = cv2.imencode('.jpg', detections)
         out = buffer.tobytes()

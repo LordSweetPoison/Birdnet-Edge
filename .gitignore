@@ -1,0 +1,20 @@
+# ignore all files by defualt 
+*
+
+# main files not to ignore
+!README.md
+!.gitignore
+
+# inference files not to ignore 
+!inference/infer.py
+!inference/server.py
+!inference/roboflow_utils.py
+
+# training files not to ignore 
+!train/openvino_utils.py
+!train/train.py
+!train/augment.py
+
+# do not ignore any models 
+!models/*
+

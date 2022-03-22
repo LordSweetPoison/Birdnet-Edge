@@ -17,6 +17,7 @@ from roboflow_utils import upload_cv2_image
 
 app = Flask(__name__)
 
+print('name:', __name__)
 
 # define celery redis location 
 app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'

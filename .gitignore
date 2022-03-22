@@ -13,12 +13,15 @@
 !inference/roboflow_utils.py
 !inference/run_redis.sh
 !inference/requirements.txt
+!inference/templates
+!inference/templates/*
 
 # training files not to ignore 
 !train
 !train/openvino_utils.py
 !train/train.py
 !train/augment.py
+
 
 # do not ignore any models 
 !models

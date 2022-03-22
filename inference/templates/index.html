@@ -1,0 +1,32 @@
+<head>
+    <title>Object Detection with the Intel Neural Compute Stick</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8  offset-lg-2">
+                <h1 >Object detection</h1>
+                <ul>
+                    <li>Hardware:
+                    <ul>
+                        <li>Infernce: Intel Neural Compute Stick</li>
+                        <li>Camera: PiCamera</li>
+                        <li>Board: Raspberry Pi 3B+</li>
+                    </ul>
+                    </li>
+                    <li>Software
+                    <ul>
+                        <li>Deep Learning Framework: PyTorch</li>
+                        <li>Accelorator Engine: Intel OpenVino</li>
+                        <li>Web Framework: Flask</li>
+                    </ul>
+                    </li>
+                </ul>
+                <p style="text-align:center;">
+                    <img src="{{ url_for('video_feed') }}" width="60%">
+                </p>
+            </div>
+        </div>
+    </div>
+    </body>

@@ -43,6 +43,7 @@ LOGGER = print
 @celery.task
 def async_upload_photo(to_post):
     # define daatset
+    """
     dataset = 'birdcamid'
 
     # name photo
@@ -61,6 +62,8 @@ def async_upload_photo(to_post):
     })
 
     return r
+    """
+    return None
 
 
 def gen_frames():  

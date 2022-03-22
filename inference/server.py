@@ -1,5 +1,5 @@
 import cv2
-import datetime 
+from datetime import datetime 
 import requests
 import base64
 
@@ -23,6 +23,7 @@ app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
 
 # define celery
 celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
+celery.conf.update(app.config)
 
 # set up nsc2 and camera only if name is main
 if __name__ == "__main__":
@@ -101,7 +102,7 @@ def gen_frames():
 def index():
     return render_template('index.html')
     
-@app.route('/video_feed')
+@app.route('/video_feed', methods=['POST'])
 def video_feed():
     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 

@@ -24,7 +24,7 @@ app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
 # define celery
 celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
 
-# set up nsc2 only if name is main
+# set up nsc2 and camera only if name is main
 if __name__ == "__main__":
     model_name = 'yolov5n'
     device = 'MYRIAD'
@@ -35,7 +35,7 @@ if __name__ == "__main__":
 
     print('Intel NCS2 succesfully initiated')
 
-camera = cv2.VideoCapture(0)
+    camera = cv2.VideoCapture(0)
 
 LOGGER = print
 
@@ -44,6 +44,7 @@ def async_upload_photo(to_post):
     # define daatset
     dataset = 'birdcamid'
 
+    # name photo
     photo_name = datetime.now().strftime("%d%b%Y%H%M%S")
 
     # create upload url
@@ -81,8 +82,9 @@ def gen_frames():
 
             # convert buffer to bytes than to ascii
             to_post = base64.b64encode(buffer).decode('ascii')
-            # async send photo in 3 seconds
-            async_upload_photo.apply_async(args = [to_post], countdown = 3)
+
+            # async send photo in 0 seconds
+            async_upload_photo.apply_async(args = [to_post], countdown = 0)
 
         # encode the image then convert to bytes 
         _, buffer = cv2.imencode('.jpg', detections)

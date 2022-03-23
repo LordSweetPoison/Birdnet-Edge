@@ -43,7 +43,6 @@ LOGGER = print
 @celery.task
 def async_upload_photo(to_post):
     # define daatset
-    """
     dataset = 'birdcamid'
 
     # name photo
@@ -62,8 +61,6 @@ def async_upload_photo(to_post):
     })
 
     return r
-    """
-    return None
 
 
 def gen_frames():  
@@ -91,10 +88,9 @@ def gen_frames():
 
             # convert buffer to bytes than to ascii
             to_post = base64.b64encode(buffer).decode('ascii')
-            print('0')
+
             # async send photo to roboflow
             async_upload_photo.apply_async(args = [to_post])
-            print('1')
 
         # yield the output 
         yield (b'--frame\r\n'

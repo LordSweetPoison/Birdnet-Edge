@@ -5,7 +5,7 @@ import base64
 
 from infer import ObjectDetector
 
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, Response, jsonify
 
 from celery import Celery
 
@@ -60,7 +60,7 @@ def async_upload_photo(to_post):
         "Content-Type": "application/x-www-form-urlencoded"
     })
 
-    return r
+    return jsonify(r)
 
 
 def gen_frames():  

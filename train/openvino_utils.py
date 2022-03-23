@@ -1,3 +1,4 @@
+from setuptools import setup
 import torchvision.models as models
 import torchvision
 import torch 
@@ -9,13 +10,13 @@ import timm
 import cv2
 import onnxsim
 import subprocess
+import os 
 
 def to_numpy(tensor):
     return tensor.detach().cpu().numpy() if tensor.requires_grad else tensor.cpu().numpy()
 
 def torch_to_onnx(
     model, 
-    torch_model_path, 
     onnx_model_path,
     batch_size,
     input_shape, 
@@ -79,6 +80,7 @@ def test_onnx_model(torch_model, onnx_model_path, batch_size, input_shape):
     print("Exported model has been tested with ONNXRuntime, and the result looks good!")
 
 def compile_openvino_model(openvino_mopy_path,
+        openvino_path, 
         onnx_model_path,
         output_dir, 
         input_shape = (1, 3, 640, 640),
@@ -88,9 +90,20 @@ def compile_openvino_model(openvino_mopy_path,
         scale = 255 # amount to scale inputs, this converts to 255
         ):
 
+    # set up env variables 
+    setupvars_cmd = os.path.join(openvino_path, 'bin', 'setupvars.bat')
+
+    print('setting up openvino vars')
+
+    process = subprocess.Popen(setupvars_cmd, stdout=subprocess.PIPE)
+    output, error = process.communicate()
+
+    print(output)
+
     ie = IECore()
     model = ie.read_network(model = onnx_model_path)
     versions = ie.get_versions(device)
+
     print(versions)
 
     print(f"{device}")
@@ -98,20 +111,33 @@ def compile_openvino_model(openvino_mopy_path,
     print(f"Build ........... {versions[device].build_number}")
 
     # create bash command to compile model using openvino
-    bash_command = f'''python "{openvino_mopy_path}" \
-        --input_model "{onnx_model_path}" \
-        --output_dir "{output_dir}" \
-        --input_shape {str(input_shape).replace(" ", "")} \
-        --output {",".join(output_layers)} \
-        --data_type {data_type} \
-        --scale {scale}
-        '''
+    bash_command = f'''python?{openvino_mopy_path}?--input_model?{onnx_model_path}?--output_dir?{output_dir}?--input_shape?{str(input_shape).replace(" ", "")}?--output?{",".join(output_layers)}?--data_type?{data_type}?--scale?{scale}'''.split(sep = '?') # '?' is used as a seperator since paths may have spaces 
 
     # compile model
-    process = subprocess.Popen(bash_command.split(), stdout=subprocess.PIPE)
+    print(bash_command)
+    process = subprocess.Popen(bash_command, stdout=subprocess.PIPE)
     output, error = process.communicate()
 
     return output, error
 
 if __name__ == "__main__":
-    pass
+    INPUT_SHAPE = (3, 640, 640)
+    batch_size = 1
+
+    model_name = 'yolov5n'
+    onnx_model_path = f'{model_name}.onnx'
+    onnx_model_path = "C:\\Users\\14135\\Desktop\\birdnet_torch\\yolov5n.onnx"
+
+    """
+    print('loading torch model')
+
+    torch_model =  torch.hub.load('ultralytics/yolov5', 'yolov5n') #models.mobilenet_v3_large()
+    torch_model.eval()
+
+    print('converting roch to onnx')
+    torch_to_onnx(torch_model, onnx_model_path, batch_size, INPUT_SHAPE)
+    """
+
+    print('compiling openvino model')
+    mopy_path = 'C:\\Program Files (x86)\\Intel\\openvino_2021\\deployment_tools\\model_optimizer\\mo.py'
+    compile_openvino_model(mopy_path, 'C:\\Program Files (x86)\\Intel\\openvino_2021', onnx_model_path, "C:\\Users\\14135\\Desktop\\Birdnet-Edge\\models")

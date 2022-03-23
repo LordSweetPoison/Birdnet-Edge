@@ -9,11 +9,7 @@ from flask import Flask, render_template, Response, jsonify
 
 from celery import Celery
 
-from config import ROBOFLOW_PUBLIC, ROBOFLOW_PRIVATE
-
-from openvino.inference_engine import IECore
-
-from roboflow_utils import upload_cv2_image
+from config import ROBOFLOW_PRIVATE
 
 app = Flask(__name__)
 

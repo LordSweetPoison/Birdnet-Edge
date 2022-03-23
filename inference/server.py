@@ -60,8 +60,6 @@ def async_upload_photo(to_post):
         "Content-Type": "application/x-www-form-urlencoded"
     })
 
-    return jsonify(r)
-
 
 def gen_frames():  
     while True:

@@ -213,7 +213,7 @@ class ObjectDetector():
         self.ie = IECore()
         
         # read and load the network onto the device 
-        net = self.ie.read_network(model = f'/home/pi/Birdnet-Edge/models/{model_name}.xml', weights = f'/home/pi/Birdnet_Edge/models/{model_name}.bin')
+        net = self.ie.read_network(model = f'/home/pi/Birdnet-Edge/models/{model_name}.xml', weights = f'/home/pi/Birdnet-Edge/models/{model_name}.bin')
         self.net = self.ie.load_network(network = net, device_name = device, num_requests = 2)
 
         self.conf_threshold = conf_threshold

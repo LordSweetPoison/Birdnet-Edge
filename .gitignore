@@ -27,3 +27,5 @@
 !models
 !models/*
 
+# do not ignore the folder data, but do ignore contents
+!/data

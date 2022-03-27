@@ -6,8 +6,7 @@ import onnx
 import onnxruntime as ort
 import numpy as np
 from openvino.inference_engine import IECore
-import timm
-import cv2
+import argparse
 import onnxsim
 import subprocess
 import os 
@@ -79,7 +78,7 @@ def test_onnx_model(torch_model, onnx_model_path, batch_size, input_shape):
 
     print("Exported model has been tested with ONNXRuntime, and the result looks good!")
 
-def compile_openvino_model(openvino_mopy_path,
+def compile_openvino_model(
         openvino_path, 
         onnx_model_path,
         output_dir, 
@@ -110,8 +109,10 @@ def compile_openvino_model(openvino_mopy_path,
     print(f"MKLDNNPlugin version ......... {versions[device].major}.{versions[device].minor}")
     print(f"Build ........... {versions[device].build_number}")
 
+    mopy_path = os.path.join(openvino_path, 'deployment_tools', 'model_optimizer', 'mo.py')
+
     # create bash command to compile model using openvino
-    bash_command = f'''python?{openvino_mopy_path}?--input_model?{onnx_model_path}?--output_dir?{output_dir}?--input_shape?{str(input_shape).replace(" ", "")}?--output?{",".join(output_layers)}?--data_type?{data_type}?--scale?{scale}'''.split(sep = '?') # '?' is used as a seperator since paths may have spaces 
+    bash_command = f'''python?{mopy_path}?--input_model?{onnx_model_path}?--output_dir?{output_dir}?--input_shape?{str(input_shape).replace(" ", "")}?--output?{",".join(output_layers)}?--data_type?{data_type}?--scale?{scale}'''.split(sep = '?') # '?' is used as a seperator since paths may have spaces 
 
     # compile model
     print(bash_command)
@@ -120,15 +121,20 @@ def compile_openvino_model(openvino_mopy_path,
 
     return output, error
 
+def create_parser():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--weights', type=str, default= './yolov5s.pt', help='initial weights path')
+
+
+
 if __name__ == "__main__":
+
     INPUT_SHAPE = (3, 640, 640)
     batch_size = 1
 
     model_name = 'yolov5n'
-    onnx_model_path = f'{model_name}.onnx'
-    onnx_model_path = "C:\\Users\\14135\\Desktop\\birdnet_torch\\yolov5n.onnx"
+    onnx_model_path = os.path.join(os.getcwd(), f'{model_name}.onnx')
 
-    """
     print('loading torch model')
 
     torch_model =  torch.hub.load('ultralytics/yolov5', 'yolov5n') #models.mobilenet_v3_large()
@@ -136,8 +142,8 @@ if __name__ == "__main__":
 
     print('converting roch to onnx')
     torch_to_onnx(torch_model, onnx_model_path, batch_size, INPUT_SHAPE)
-    """
 
     print('compiling openvino model')
+
     mopy_path = 'C:\\Program Files (x86)\\Intel\\openvino_2021\\deployment_tools\\model_optimizer\\mo.py'
-    compile_openvino_model(mopy_path, 'C:\\Program Files (x86)\\Intel\\openvino_2021', onnx_model_path, "C:\\Users\\14135\\Desktop\\Birdnet-Edge\\models")
+    compile_openvino_model('/opt/intel/openvino_2021/', onnx_model_path, f"{os.getcwd()}/../models")

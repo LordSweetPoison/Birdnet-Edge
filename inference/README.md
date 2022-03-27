@@ -1,6 +1,6 @@
 ## Directions 
 
-### Run the following commands in order:
+### Run the following commands in order in seperate terminals:
 
 Start the redis server (you may need to change the permissions of the run_redis.sh)
 

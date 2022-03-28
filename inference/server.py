@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
     print('Setting up network for Intel NCS2')
 
-    object_detector = ObjectDetector(model_name, device)
+    object_detector = ObjectDetector(model_name, device, num_classes = 1, conf_threshold = .3)
 
     print('Intel NCS2 succesfully initiated')
 

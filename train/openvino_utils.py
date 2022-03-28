@@ -127,7 +127,6 @@ if __name__ == "__main__":
     model_name = 'yolov5n'
     onnx_model_path = f'{model_name}.onnx'
     onnx_model_path = f"C:\\Users\\14135\\Desktop\\Birdnet-Edge\\{onnx_model_path}"
-
     
     print('loading torch model')
     torch_model =  torch.hub.load('ultralytics/yolov5', 'custom', path = 'C:\\Users\\14135\\Desktop\\Birdnet-Edge\\train\\best.pt', force_reload = True)

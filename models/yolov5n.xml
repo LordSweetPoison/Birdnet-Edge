@@ -13,10 +13,10 @@
 			</output>
 		</layer>
 		<layer id="1" name="images/scale_copy" type="Const" version="opset1">
-			<data element_type="f16" offset="0" shape="32, 3, 6, 6" size="6912"/>
+			<data element_type="f16" offset="0" shape="16, 3, 6, 6" size="3456"/>
 			<output>
 				<port id="0" names="model.model.model.0.conv.weight" precision="FP16">
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>3</dim>
 					<dim>6</dim>
 					<dim>6</dim>
@@ -33,7 +33,7 @@
 					<dim>640</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>3</dim>
 					<dim>6</dim>
 					<dim>6</dim>
@@ -42,18 +42,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>320</dim>
 					<dim>320</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="3" name="Conv_1/Dims3406" type="Const" version="opset1">
-			<data element_type="f16" offset="6912" shape="1, 32, 1, 1" size="64"/>
+		<layer id="3" name="Conv_1/Dims3238" type="Const" version="opset1">
+			<data element_type="f16" offset="3456" shape="1, 16, 1, 1" size="32"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -64,13 +64,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>320</dim>
 					<dim>320</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -78,7 +78,7 @@
 			<output>
 				<port id="2" names="123" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>320</dim>
 					<dim>320</dim>
 				</port>
@@ -88,7 +88,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>320</dim>
 					<dim>320</dim>
 				</port>
@@ -96,18 +96,18 @@
 			<output>
 				<port id="1" names="125" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>320</dim>
 					<dim>320</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="6" name="model.model.model.1.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="6976" shape="64, 32, 3, 3" size="36864"/>
+			<data element_type="f16" offset="3488" shape="32, 16, 3, 3" size="9216"/>
 			<output>
 				<port id="0" names="model.model.model.1.conv.weight" precision="FP16">
-					<dim>64</dim>
 					<dim>32</dim>
+					<dim>16</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -118,13 +118,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>320</dim>
 					<dim>320</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>64</dim>
 					<dim>32</dim>
+					<dim>16</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -132,18 +132,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="8" name="Conv_4/Dims3316" type="Const" version="opset1">
-			<data element_type="f16" offset="43840" shape="1, 64, 1, 1" size="128"/>
+		<layer id="8" name="Conv_4/Dims3364" type="Const" version="opset1">
+			<data element_type="f16" offset="12704" shape="1, 32, 1, 1" size="64"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -154,13 +154,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -168,7 +168,7 @@
 			<output>
 				<port id="2" names="126" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
@@ -178,7 +178,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
@@ -186,18 +186,18 @@
 			<output>
 				<port id="1" names="128" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="11" name="model.model.model.2.cv1.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="43968" shape="32, 64, 1, 1" size="4096"/>
+			<data element_type="f16" offset="12768" shape="16, 32, 1, 1" size="1024"/>
 			<output>
 				<port id="0" names="model.model.model.2.cv1.conv.weight" precision="FP16">
+					<dim>16</dim>
 					<dim>32</dim>
-					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -208,13 +208,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
 				<port id="1" precision="FP16">
+					<dim>16</dim>
 					<dim>32</dim>
-					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -222,18 +222,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="13" name="Conv_7/Dims3226" type="Const" version="opset1">
-			<data element_type="f16" offset="48064" shape="1, 32, 1, 1" size="64"/>
+		<layer id="13" name="Conv_7/Dims3280" type="Const" version="opset1">
+			<data element_type="f16" offset="13792" shape="1, 16, 1, 1" size="32"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -244,13 +244,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -258,7 +258,7 @@
 			<output>
 				<port id="2" names="129" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
@@ -268,7 +268,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
@@ -276,18 +276,18 @@
 			<output>
 				<port id="1" names="131" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="16" name="model.model.model.2.m.0.cv1.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="48128" shape="32, 32, 1, 1" size="2048"/>
+			<data element_type="f16" offset="13824" shape="16, 16, 1, 1" size="512"/>
 			<output>
 				<port id="0" names="model.model.model.2.m.0.cv1.conv.weight" precision="FP16">
-					<dim>32</dim>
-					<dim>32</dim>
+					<dim>16</dim>
+					<dim>16</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -298,13 +298,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>32</dim>
-					<dim>32</dim>
+					<dim>16</dim>
+					<dim>16</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -312,18 +312,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="18" name="Conv_10/Dims3256" type="Const" version="opset1">
-			<data element_type="f16" offset="50176" shape="1, 32, 1, 1" size="64"/>
+		<layer id="18" name="Conv_10/Dims3262" type="Const" version="opset1">
+			<data element_type="f16" offset="14336" shape="1, 16, 1, 1" size="32"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -334,13 +334,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -348,7 +348,7 @@
 			<output>
 				<port id="2" names="132" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
@@ -358,7 +358,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
@@ -366,18 +366,18 @@
 			<output>
 				<port id="1" names="134" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="21" name="model.model.model.2.m.0.cv2.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="50240" shape="32, 32, 3, 3" size="18432"/>
+			<data element_type="f16" offset="14368" shape="16, 16, 3, 3" size="4608"/>
 			<output>
 				<port id="0" names="model.model.model.2.m.0.cv2.conv.weight" precision="FP16">
-					<dim>32</dim>
-					<dim>32</dim>
+					<dim>16</dim>
+					<dim>16</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -388,13 +388,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>32</dim>
-					<dim>32</dim>
+					<dim>16</dim>
+					<dim>16</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -402,18 +402,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="23" name="Conv_13/Dims3454" type="Const" version="opset1">
-			<data element_type="f16" offset="68672" shape="1, 32, 1, 1" size="64"/>
+		<layer id="23" name="Conv_13/Dims3466" type="Const" version="opset1">
+			<data element_type="f16" offset="18976" shape="1, 16, 1, 1" size="32"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -424,13 +424,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -438,7 +438,7 @@
 			<output>
 				<port id="2" names="135" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
@@ -448,7 +448,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
@@ -456,7 +456,7 @@
 			<output>
 				<port id="1" names="137" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
@@ -467,13 +467,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
@@ -481,18 +481,18 @@
 			<output>
 				<port id="2" names="138" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="27" name="model.model.model.2.cv2.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="68736" shape="32, 64, 1, 1" size="4096"/>
+			<data element_type="f16" offset="19008" shape="16, 32, 1, 1" size="1024"/>
 			<output>
 				<port id="0" names="model.model.model.2.cv2.conv.weight" precision="FP16">
+					<dim>16</dim>
 					<dim>32</dim>
-					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -503,13 +503,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
 				<port id="1" precision="FP16">
+					<dim>16</dim>
 					<dim>32</dim>
-					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -517,18 +517,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="29" name="Conv_17/Dims3478" type="Const" version="opset1">
-			<data element_type="f16" offset="72832" shape="1, 32, 1, 1" size="64"/>
+		<layer id="29" name="Conv_17/Dims3130" type="Const" version="opset1">
+			<data element_type="f16" offset="20032" shape="1, 16, 1, 1" size="32"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -539,13 +539,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -553,7 +553,7 @@
 			<output>
 				<port id="2" names="139" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
@@ -563,7 +563,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
@@ -571,7 +571,7 @@
 			<output>
 				<port id="1" names="141" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
@@ -582,13 +582,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>32</dim>
+					<dim>16</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
@@ -596,18 +596,18 @@
 			<output>
 				<port id="2" names="142" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="33" name="model.model.model.2.cv3.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="72896" shape="64, 64, 1, 1" size="8192"/>
+			<data element_type="f16" offset="20064" shape="32, 32, 1, 1" size="2048"/>
 			<output>
 				<port id="0" names="model.model.model.2.cv3.conv.weight" precision="FP16">
-					<dim>64</dim>
-					<dim>64</dim>
+					<dim>32</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -618,13 +618,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>64</dim>
-					<dim>64</dim>
+					<dim>32</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -632,18 +632,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="35" name="Conv_21/Dims3400" type="Const" version="opset1">
-			<data element_type="f16" offset="81088" shape="1, 64, 1, 1" size="128"/>
+		<layer id="35" name="Conv_21/Dims3322" type="Const" version="opset1">
+			<data element_type="f16" offset="22112" shape="1, 32, 1, 1" size="64"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -654,13 +654,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -668,7 +668,7 @@
 			<output>
 				<port id="2" names="143" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
@@ -678,7 +678,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
@@ -686,18 +686,18 @@
 			<output>
 				<port id="1" names="145" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="38" name="model.model.model.3.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="81216" shape="128, 64, 3, 3" size="147456"/>
+			<data element_type="f16" offset="22176" shape="64, 32, 3, 3" size="36864"/>
 			<output>
 				<port id="0" names="model.model.model.3.conv.weight" precision="FP16">
-					<dim>128</dim>
 					<dim>64</dim>
+					<dim>32</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -708,13 +708,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>160</dim>
 					<dim>160</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>128</dim>
 					<dim>64</dim>
+					<dim>32</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -722,18 +722,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="40" name="Conv_24/Dims3292" type="Const" version="opset1">
-			<data element_type="f16" offset="228672" shape="1, 128, 1, 1" size="256"/>
+		<layer id="40" name="Conv_24/Dims3412" type="Const" version="opset1">
+			<data element_type="f16" offset="59040" shape="1, 64, 1, 1" size="128"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -744,13 +744,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -758,7 +758,7 @@
 			<output>
 				<port id="2" names="146" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -768,7 +768,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -776,18 +776,18 @@
 			<output>
 				<port id="1" names="148" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="43" name="model.model.model.4.cv1.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="228928" shape="64, 128, 1, 1" size="16384"/>
+			<data element_type="f16" offset="59168" shape="32, 64, 1, 1" size="4096"/>
 			<output>
 				<port id="0" names="model.model.model.4.cv1.conv.weight" precision="FP16">
+					<dim>32</dim>
 					<dim>64</dim>
-					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -798,13 +798,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
+					<dim>32</dim>
 					<dim>64</dim>
-					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -812,18 +812,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="45" name="Conv_27/Dims3142" type="Const" version="opset1">
-			<data element_type="f16" offset="245312" shape="1, 64, 1, 1" size="128"/>
+		<layer id="45" name="Conv_27/Dims3406" type="Const" version="opset1">
+			<data element_type="f16" offset="63264" shape="1, 32, 1, 1" size="64"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -834,13 +834,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -848,7 +848,7 @@
 			<output>
 				<port id="2" names="149" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -858,7 +858,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -866,18 +866,18 @@
 			<output>
 				<port id="1" names="151" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="48" name="model.model.model.4.m.0.cv1.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="245440" shape="64, 64, 1, 1" size="8192"/>
+			<data element_type="f16" offset="63328" shape="32, 32, 1, 1" size="2048"/>
 			<output>
 				<port id="0" names="model.model.model.4.m.0.cv1.conv.weight" precision="FP16">
-					<dim>64</dim>
-					<dim>64</dim>
+					<dim>32</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -888,13 +888,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>64</dim>
-					<dim>64</dim>
+					<dim>32</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -902,18 +902,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="50" name="Conv_30/Dims3238" type="Const" version="opset1">
-			<data element_type="f16" offset="253632" shape="1, 64, 1, 1" size="128"/>
+		<layer id="50" name="Conv_30/Dims3436" type="Const" version="opset1">
+			<data element_type="f16" offset="65376" shape="1, 32, 1, 1" size="64"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -924,13 +924,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -938,7 +938,7 @@
 			<output>
 				<port id="2" names="152" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -948,7 +948,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -956,18 +956,18 @@
 			<output>
 				<port id="1" names="154" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="53" name="model.model.model.4.m.0.cv2.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="253760" shape="64, 64, 3, 3" size="73728"/>
+			<data element_type="f16" offset="65440" shape="32, 32, 3, 3" size="18432"/>
 			<output>
 				<port id="0" names="model.model.model.4.m.0.cv2.conv.weight" precision="FP16">
-					<dim>64</dim>
-					<dim>64</dim>
+					<dim>32</dim>
+					<dim>32</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -978,13 +978,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>64</dim>
-					<dim>64</dim>
+					<dim>32</dim>
+					<dim>32</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -992,18 +992,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="55" name="Conv_33/Dims3250" type="Const" version="opset1">
-			<data element_type="f16" offset="327488" shape="1, 64, 1, 1" size="128"/>
+		<layer id="55" name="Conv_33/Dims3316" type="Const" version="opset1">
+			<data element_type="f16" offset="83872" shape="1, 32, 1, 1" size="64"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1014,13 +1014,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1028,7 +1028,7 @@
 			<output>
 				<port id="2" names="155" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -1038,7 +1038,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -1046,7 +1046,7 @@
 			<output>
 				<port id="1" names="157" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -1057,13 +1057,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -1071,18 +1071,18 @@
 			<output>
 				<port id="2" names="158" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="59" name="model.model.model.4.m.1.cv1.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="327616" shape="64, 64, 1, 1" size="8192"/>
+			<data element_type="f16" offset="83936" shape="32, 32, 1, 1" size="2048"/>
 			<output>
 				<port id="0" names="model.model.model.4.m.1.cv1.conv.weight" precision="FP16">
-					<dim>64</dim>
-					<dim>64</dim>
+					<dim>32</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1093,13 +1093,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>64</dim>
-					<dim>64</dim>
+					<dim>32</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1107,18 +1107,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="61" name="Conv_37/Dims3466" type="Const" version="opset1">
-			<data element_type="f16" offset="335808" shape="1, 64, 1, 1" size="128"/>
+		<layer id="61" name="Conv_37/Dims3184" type="Const" version="opset1">
+			<data element_type="f16" offset="85984" shape="1, 32, 1, 1" size="64"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1129,13 +1129,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1143,7 +1143,7 @@
 			<output>
 				<port id="2" names="159" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -1153,7 +1153,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -1161,18 +1161,18 @@
 			<output>
 				<port id="1" names="161" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="64" name="model.model.model.4.m.1.cv2.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="335936" shape="64, 64, 3, 3" size="73728"/>
+			<data element_type="f16" offset="86048" shape="32, 32, 3, 3" size="18432"/>
 			<output>
 				<port id="0" names="model.model.model.4.m.1.cv2.conv.weight" precision="FP16">
-					<dim>64</dim>
-					<dim>64</dim>
+					<dim>32</dim>
+					<dim>32</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -1183,13 +1183,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>64</dim>
-					<dim>64</dim>
+					<dim>32</dim>
+					<dim>32</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -1197,18 +1197,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="66" name="Conv_40/Dims3202" type="Const" version="opset1">
-			<data element_type="f16" offset="409664" shape="1, 64, 1, 1" size="128"/>
+		<layer id="66" name="Conv_40/Dims3352" type="Const" version="opset1">
+			<data element_type="f16" offset="104480" shape="1, 32, 1, 1" size="64"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1219,13 +1219,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1233,7 +1233,7 @@
 			<output>
 				<port id="2" names="162" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -1243,7 +1243,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -1251,7 +1251,7 @@
 			<output>
 				<port id="1" names="164" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -1262,13 +1262,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -1276,18 +1276,18 @@
 			<output>
 				<port id="2" names="165" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="70" name="model.model.model.4.cv2.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="409792" shape="64, 128, 1, 1" size="16384"/>
+			<data element_type="f16" offset="104544" shape="32, 64, 1, 1" size="4096"/>
 			<output>
 				<port id="0" names="model.model.model.4.cv2.conv.weight" precision="FP16">
+					<dim>32</dim>
 					<dim>64</dim>
-					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1298,13 +1298,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
+					<dim>32</dim>
 					<dim>64</dim>
-					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1312,18 +1312,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="72" name="Conv_44/Dims3448" type="Const" version="opset1">
-			<data element_type="f16" offset="426176" shape="1, 64, 1, 1" size="128"/>
+		<layer id="72" name="Conv_44/Dims3400" type="Const" version="opset1">
+			<data element_type="f16" offset="108640" shape="1, 32, 1, 1" size="64"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1334,13 +1334,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1348,7 +1348,7 @@
 			<output>
 				<port id="2" names="166" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -1358,7 +1358,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -1366,7 +1366,7 @@
 			<output>
 				<port id="1" names="168" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -1377,13 +1377,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -1391,18 +1391,18 @@
 			<output>
 				<port id="2" names="169" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="76" name="model.model.model.4.cv3.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="426304" shape="128, 128, 1, 1" size="32768"/>
+			<data element_type="f16" offset="108704" shape="64, 64, 1, 1" size="8192"/>
 			<output>
 				<port id="0" names="model.model.model.4.cv3.conv.weight" precision="FP16">
-					<dim>128</dim>
-					<dim>128</dim>
+					<dim>64</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1413,13 +1413,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>128</dim>
-					<dim>128</dim>
+					<dim>64</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1427,18 +1427,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="78" name="Conv_48/Dims3280" type="Const" version="opset1">
-			<data element_type="f16" offset="459072" shape="1, 128, 1, 1" size="256"/>
+		<layer id="78" name="Conv_48/Dims3172" type="Const" version="opset1">
+			<data element_type="f16" offset="116896" shape="1, 64, 1, 1" size="128"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1449,13 +1449,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1463,7 +1463,7 @@
 			<output>
 				<port id="2" names="170" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -1473,7 +1473,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -1481,18 +1481,18 @@
 			<output>
 				<port id="1" names="172" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="81" name="model.model.model.5.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="459328" shape="256, 128, 3, 3" size="589824"/>
+			<data element_type="f16" offset="117024" shape="128, 64, 3, 3" size="147456"/>
 			<output>
 				<port id="0" names="model.model.model.5.conv.weight" precision="FP16">
-					<dim>256</dim>
 					<dim>128</dim>
+					<dim>64</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -1503,13 +1503,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>256</dim>
 					<dim>128</dim>
+					<dim>64</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -1517,18 +1517,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="83" name="Conv_51/Dims3148" type="Const" version="opset1">
-			<data element_type="f16" offset="1049152" shape="1, 256, 1, 1" size="512"/>
+		<layer id="83" name="Conv_51/Dims3394" type="Const" version="opset1">
+			<data element_type="f16" offset="264480" shape="1, 128, 1, 1" size="256"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1539,13 +1539,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1553,7 +1553,7 @@
 			<output>
 				<port id="2" names="173" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -1563,7 +1563,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -1571,18 +1571,18 @@
 			<output>
 				<port id="1" names="175" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="86" name="model.model.model.6.cv1.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="1049664" shape="128, 256, 1, 1" size="65536"/>
+			<data element_type="f16" offset="264736" shape="64, 128, 1, 1" size="16384"/>
 			<output>
 				<port id="0" names="model.model.model.6.cv1.conv.weight" precision="FP16">
+					<dim>64</dim>
 					<dim>128</dim>
-					<dim>256</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1593,13 +1593,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
+					<dim>64</dim>
 					<dim>128</dim>
-					<dim>256</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1607,18 +1607,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="88" name="Conv_54/Dims3220" type="Const" version="opset1">
-			<data element_type="f16" offset="1115200" shape="1, 128, 1, 1" size="256"/>
+		<layer id="88" name="Conv_54/Dims3478" type="Const" version="opset1">
+			<data element_type="f16" offset="281120" shape="1, 64, 1, 1" size="128"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1629,13 +1629,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1643,7 +1643,7 @@
 			<output>
 				<port id="2" names="176" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -1653,7 +1653,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -1661,18 +1661,18 @@
 			<output>
 				<port id="1" names="178" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="91" name="model.model.model.6.m.0.cv1.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="1115456" shape="128, 128, 1, 1" size="32768"/>
+			<data element_type="f16" offset="281248" shape="64, 64, 1, 1" size="8192"/>
 			<output>
 				<port id="0" names="model.model.model.6.m.0.cv1.conv.weight" precision="FP16">
-					<dim>128</dim>
-					<dim>128</dim>
+					<dim>64</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1683,13 +1683,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>128</dim>
-					<dim>128</dim>
+					<dim>64</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1697,18 +1697,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="93" name="Conv_57/Dims3352" type="Const" version="opset1">
-			<data element_type="f16" offset="1148224" shape="1, 128, 1, 1" size="256"/>
+		<layer id="93" name="Conv_57/Dims3256" type="Const" version="opset1">
+			<data element_type="f16" offset="289440" shape="1, 64, 1, 1" size="128"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1719,13 +1719,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1733,7 +1733,7 @@
 			<output>
 				<port id="2" names="179" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -1743,7 +1743,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -1751,18 +1751,18 @@
 			<output>
 				<port id="1" names="181" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="96" name="model.model.model.6.m.0.cv2.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="1148480" shape="128, 128, 3, 3" size="294912"/>
+			<data element_type="f16" offset="289568" shape="64, 64, 3, 3" size="73728"/>
 			<output>
 				<port id="0" names="model.model.model.6.m.0.cv2.conv.weight" precision="FP16">
-					<dim>128</dim>
-					<dim>128</dim>
+					<dim>64</dim>
+					<dim>64</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -1773,13 +1773,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>128</dim>
-					<dim>128</dim>
+					<dim>64</dim>
+					<dim>64</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -1787,18 +1787,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="98" name="Conv_60/Dims3442" type="Const" version="opset1">
-			<data element_type="f16" offset="1443392" shape="1, 128, 1, 1" size="256"/>
+		<layer id="98" name="Conv_60/Dims3214" type="Const" version="opset1">
+			<data element_type="f16" offset="363296" shape="1, 64, 1, 1" size="128"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1809,13 +1809,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1823,7 +1823,7 @@
 			<output>
 				<port id="2" names="182" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -1833,7 +1833,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -1841,7 +1841,7 @@
 			<output>
 				<port id="1" names="184" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -1852,13 +1852,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -1866,18 +1866,18 @@
 			<output>
 				<port id="2" names="185" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="102" name="model.model.model.6.m.1.cv1.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="1443648" shape="128, 128, 1, 1" size="32768"/>
+			<data element_type="f16" offset="363424" shape="64, 64, 1, 1" size="8192"/>
 			<output>
 				<port id="0" names="model.model.model.6.m.1.cv1.conv.weight" precision="FP16">
-					<dim>128</dim>
-					<dim>128</dim>
+					<dim>64</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1888,13 +1888,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>128</dim>
-					<dim>128</dim>
+					<dim>64</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1902,18 +1902,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="104" name="Conv_64/Dims3340" type="Const" version="opset1">
-			<data element_type="f16" offset="1476416" shape="1, 128, 1, 1" size="256"/>
+		<layer id="104" name="Conv_64/Dims3148" type="Const" version="opset1">
+			<data element_type="f16" offset="371616" shape="1, 64, 1, 1" size="128"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1924,13 +1924,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -1938,7 +1938,7 @@
 			<output>
 				<port id="2" names="186" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -1948,7 +1948,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -1956,18 +1956,18 @@
 			<output>
 				<port id="1" names="188" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="107" name="model.model.model.6.m.1.cv2.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="1476672" shape="128, 128, 3, 3" size="294912"/>
+			<data element_type="f16" offset="371744" shape="64, 64, 3, 3" size="73728"/>
 			<output>
 				<port id="0" names="model.model.model.6.m.1.cv2.conv.weight" precision="FP16">
-					<dim>128</dim>
-					<dim>128</dim>
+					<dim>64</dim>
+					<dim>64</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -1978,13 +1978,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>128</dim>
-					<dim>128</dim>
+					<dim>64</dim>
+					<dim>64</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -1992,18 +1992,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="109" name="Conv_67/Dims3184" type="Const" version="opset1">
-			<data element_type="f16" offset="1771584" shape="1, 128, 1, 1" size="256"/>
+		<layer id="109" name="Conv_67/Dims3310" type="Const" version="opset1">
+			<data element_type="f16" offset="445472" shape="1, 64, 1, 1" size="128"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2014,13 +2014,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2028,7 +2028,7 @@
 			<output>
 				<port id="2" names="189" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -2038,7 +2038,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -2046,7 +2046,7 @@
 			<output>
 				<port id="1" names="191" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -2057,13 +2057,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -2071,18 +2071,18 @@
 			<output>
 				<port id="2" names="192" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="113" name="model.model.model.6.m.2.cv1.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="1771840" shape="128, 128, 1, 1" size="32768"/>
+			<data element_type="f16" offset="445600" shape="64, 64, 1, 1" size="8192"/>
 			<output>
 				<port id="0" names="model.model.model.6.m.2.cv1.conv.weight" precision="FP16">
-					<dim>128</dim>
-					<dim>128</dim>
+					<dim>64</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2093,13 +2093,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>128</dim>
-					<dim>128</dim>
+					<dim>64</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2107,18 +2107,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="115" name="Conv_71/Dims3388" type="Const" version="opset1">
-			<data element_type="f16" offset="1804608" shape="1, 128, 1, 1" size="256"/>
+		<layer id="115" name="Conv_71/Dims3274" type="Const" version="opset1">
+			<data element_type="f16" offset="453792" shape="1, 64, 1, 1" size="128"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2129,13 +2129,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2143,7 +2143,7 @@
 			<output>
 				<port id="2" names="193" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -2153,7 +2153,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -2161,18 +2161,18 @@
 			<output>
 				<port id="1" names="195" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="118" name="model.model.model.6.m.2.cv2.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="1804864" shape="128, 128, 3, 3" size="294912"/>
+			<data element_type="f16" offset="453920" shape="64, 64, 3, 3" size="73728"/>
 			<output>
 				<port id="0" names="model.model.model.6.m.2.cv2.conv.weight" precision="FP16">
-					<dim>128</dim>
-					<dim>128</dim>
+					<dim>64</dim>
+					<dim>64</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -2183,13 +2183,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>128</dim>
-					<dim>128</dim>
+					<dim>64</dim>
+					<dim>64</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -2197,18 +2197,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="120" name="Conv_74/Dims3136" type="Const" version="opset1">
-			<data element_type="f16" offset="2099776" shape="1, 128, 1, 1" size="256"/>
+		<layer id="120" name="Conv_74/Dims3202" type="Const" version="opset1">
+			<data element_type="f16" offset="527648" shape="1, 64, 1, 1" size="128"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2219,13 +2219,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2233,7 +2233,7 @@
 			<output>
 				<port id="2" names="196" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -2243,7 +2243,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -2251,7 +2251,7 @@
 			<output>
 				<port id="1" names="198" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -2262,13 +2262,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -2276,18 +2276,18 @@
 			<output>
 				<port id="2" names="199" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="124" name="model.model.model.6.cv2.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="2100032" shape="128, 256, 1, 1" size="65536"/>
+			<data element_type="f16" offset="527776" shape="64, 128, 1, 1" size="16384"/>
 			<output>
 				<port id="0" names="model.model.model.6.cv2.conv.weight" precision="FP16">
+					<dim>64</dim>
 					<dim>128</dim>
-					<dim>256</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2298,13 +2298,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
+					<dim>64</dim>
 					<dim>128</dim>
-					<dim>256</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2312,18 +2312,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="126" name="Conv_78/Dims3130" type="Const" version="opset1">
-			<data element_type="f16" offset="2165568" shape="1, 128, 1, 1" size="256"/>
+		<layer id="126" name="Conv_78/Dims3142" type="Const" version="opset1">
+			<data element_type="f16" offset="544160" shape="1, 64, 1, 1" size="128"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2334,13 +2334,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2348,7 +2348,7 @@
 			<output>
 				<port id="2" names="200" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -2358,7 +2358,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -2366,7 +2366,7 @@
 			<output>
 				<port id="1" names="202" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -2377,13 +2377,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -2391,18 +2391,18 @@
 			<output>
 				<port id="2" names="203" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="130" name="model.model.model.6.cv3.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="2165824" shape="256, 256, 1, 1" size="131072"/>
+			<data element_type="f16" offset="544288" shape="128, 128, 1, 1" size="32768"/>
 			<output>
 				<port id="0" names="model.model.model.6.cv3.conv.weight" precision="FP16">
-					<dim>256</dim>
-					<dim>256</dim>
+					<dim>128</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2413,13 +2413,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>256</dim>
-					<dim>256</dim>
+					<dim>128</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2427,18 +2427,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="132" name="Conv_82/Dims3298" type="Const" version="opset1">
-			<data element_type="f16" offset="2296896" shape="1, 256, 1, 1" size="512"/>
+		<layer id="132" name="Conv_82/Dims3178" type="Const" version="opset1">
+			<data element_type="f16" offset="577056" shape="1, 128, 1, 1" size="256"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2449,13 +2449,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2463,7 +2463,7 @@
 			<output>
 				<port id="2" names="204" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -2473,7 +2473,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -2481,18 +2481,18 @@
 			<output>
 				<port id="1" names="206" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="135" name="model.model.model.7.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="2297408" shape="512, 256, 3, 3" size="2359296"/>
+			<data element_type="f16" offset="577312" shape="256, 128, 3, 3" size="589824"/>
 			<output>
 				<port id="0" names="model.model.model.7.conv.weight" precision="FP16">
-					<dim>512</dim>
 					<dim>256</dim>
+					<dim>128</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -2503,13 +2503,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>512</dim>
 					<dim>256</dim>
+					<dim>128</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -2517,18 +2517,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="137" name="Conv_85/Dims3364" type="Const" version="opset1">
-			<data element_type="f16" offset="4656704" shape="1, 512, 1, 1" size="1024"/>
+		<layer id="137" name="Conv_85/Dims3382" type="Const" version="opset1">
+			<data element_type="f16" offset="1167136" shape="1, 256, 1, 1" size="512"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2539,13 +2539,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2553,7 +2553,7 @@
 			<output>
 				<port id="2" names="207" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -2563,7 +2563,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -2571,18 +2571,18 @@
 			<output>
 				<port id="1" names="209" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="140" name="model.model.model.8.cv1.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="4657728" shape="256, 512, 1, 1" size="262144"/>
+			<data element_type="f16" offset="1167648" shape="128, 256, 1, 1" size="65536"/>
 			<output>
 				<port id="0" names="model.model.model.8.cv1.conv.weight" precision="FP16">
+					<dim>128</dim>
 					<dim>256</dim>
-					<dim>512</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2593,13 +2593,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
+					<dim>128</dim>
 					<dim>256</dim>
-					<dim>512</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2607,18 +2607,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="142" name="Conv_88/Dims3430" type="Const" version="opset1">
-			<data element_type="f16" offset="4919872" shape="1, 256, 1, 1" size="512"/>
+		<layer id="142" name="Conv_88/Dims3220" type="Const" version="opset1">
+			<data element_type="f16" offset="1233184" shape="1, 128, 1, 1" size="256"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2629,13 +2629,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2643,7 +2643,7 @@
 			<output>
 				<port id="2" names="210" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -2653,7 +2653,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -2661,18 +2661,18 @@
 			<output>
 				<port id="1" names="212" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="145" name="model.model.model.8.m.0.cv1.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="4920384" shape="256, 256, 1, 1" size="131072"/>
+			<data element_type="f16" offset="1233440" shape="128, 128, 1, 1" size="32768"/>
 			<output>
 				<port id="0" names="model.model.model.8.m.0.cv1.conv.weight" precision="FP16">
-					<dim>256</dim>
-					<dim>256</dim>
+					<dim>128</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2683,13 +2683,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>256</dim>
-					<dim>256</dim>
+					<dim>128</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2697,18 +2697,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="147" name="Conv_91/Dims3214" type="Const" version="opset1">
-			<data element_type="f16" offset="5051456" shape="1, 256, 1, 1" size="512"/>
+		<layer id="147" name="Conv_91/Dims3298" type="Const" version="opset1">
+			<data element_type="f16" offset="1266208" shape="1, 128, 1, 1" size="256"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2719,13 +2719,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2733,7 +2733,7 @@
 			<output>
 				<port id="2" names="213" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -2743,7 +2743,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -2751,18 +2751,18 @@
 			<output>
 				<port id="1" names="215" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="150" name="model.model.model.8.m.0.cv2.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="5051968" shape="256, 256, 3, 3" size="1179648"/>
+			<data element_type="f16" offset="1266464" shape="128, 128, 3, 3" size="294912"/>
 			<output>
 				<port id="0" names="model.model.model.8.m.0.cv2.conv.weight" precision="FP16">
-					<dim>256</dim>
-					<dim>256</dim>
+					<dim>128</dim>
+					<dim>128</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -2773,13 +2773,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>256</dim>
-					<dim>256</dim>
+					<dim>128</dim>
+					<dim>128</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -2787,18 +2787,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="152" name="Conv_94/Dims3166" type="Const" version="opset1">
-			<data element_type="f16" offset="6231616" shape="1, 256, 1, 1" size="512"/>
+		<layer id="152" name="Conv_94/Dims3190" type="Const" version="opset1">
+			<data element_type="f16" offset="1561376" shape="1, 128, 1, 1" size="256"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2809,13 +2809,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2823,7 +2823,7 @@
 			<output>
 				<port id="2" names="216" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -2833,7 +2833,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -2841,7 +2841,7 @@
 			<output>
 				<port id="1" names="218" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -2852,13 +2852,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -2866,18 +2866,18 @@
 			<output>
 				<port id="2" names="219" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="156" name="model.model.model.8.cv2.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="6232128" shape="256, 512, 1, 1" size="262144"/>
+			<data element_type="f16" offset="1561632" shape="128, 256, 1, 1" size="65536"/>
 			<output>
 				<port id="0" names="model.model.model.8.cv2.conv.weight" precision="FP16">
+					<dim>128</dim>
 					<dim>256</dim>
-					<dim>512</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2888,13 +2888,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
+					<dim>128</dim>
 					<dim>256</dim>
-					<dim>512</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2902,18 +2902,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="158" name="Conv_98/Dims3358" type="Const" version="opset1">
-			<data element_type="f16" offset="6494272" shape="1, 256, 1, 1" size="512"/>
+		<layer id="158" name="Conv_98/Dims3136" type="Const" version="opset1">
+			<data element_type="f16" offset="1627168" shape="1, 128, 1, 1" size="256"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2924,13 +2924,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -2938,7 +2938,7 @@
 			<output>
 				<port id="2" names="220" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -2948,7 +2948,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -2956,7 +2956,7 @@
 			<output>
 				<port id="1" names="222" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -2967,13 +2967,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -2981,18 +2981,18 @@
 			<output>
 				<port id="2" names="223" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="162" name="model.model.model.8.cv3.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="6494784" shape="512, 512, 1, 1" size="524288"/>
+			<data element_type="f16" offset="1627424" shape="256, 256, 1, 1" size="131072"/>
 			<output>
 				<port id="0" names="model.model.model.8.cv3.conv.weight" precision="FP16">
-					<dim>512</dim>
-					<dim>512</dim>
+					<dim>256</dim>
+					<dim>256</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3003,13 +3003,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>512</dim>
-					<dim>512</dim>
+					<dim>256</dim>
+					<dim>256</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3017,18 +3017,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="164" name="Conv_102/Dims3370" type="Const" version="opset1">
-			<data element_type="f16" offset="7019072" shape="1, 512, 1, 1" size="1024"/>
+		<layer id="164" name="Conv_102/Dims3448" type="Const" version="opset1">
+			<data element_type="f16" offset="1758496" shape="1, 256, 1, 1" size="512"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3039,13 +3039,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3053,7 +3053,7 @@
 			<output>
 				<port id="2" names="224" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -3063,7 +3063,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -3071,18 +3071,18 @@
 			<output>
 				<port id="1" names="226" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="167" name="model.model.model.9.cv1.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="7020096" shape="256, 512, 1, 1" size="262144"/>
+			<data element_type="f16" offset="1759008" shape="128, 256, 1, 1" size="65536"/>
 			<output>
 				<port id="0" names="model.model.model.9.cv1.conv.weight" precision="FP16">
+					<dim>128</dim>
 					<dim>256</dim>
-					<dim>512</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3093,13 +3093,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
+					<dim>128</dim>
 					<dim>256</dim>
-					<dim>512</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3107,18 +3107,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="169" name="Conv_105/Dims3436" type="Const" version="opset1">
-			<data element_type="f16" offset="7282240" shape="1, 256, 1, 1" size="512"/>
+		<layer id="169" name="Conv_105/Dims3358" type="Const" version="opset1">
+			<data element_type="f16" offset="1824544" shape="1, 128, 1, 1" size="256"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3129,13 +3129,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3143,7 +3143,7 @@
 			<output>
 				<port id="2" names="227" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -3153,7 +3153,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -3161,7 +3161,7 @@
 			<output>
 				<port id="1" names="229" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -3172,7 +3172,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -3180,7 +3180,7 @@
 			<output>
 				<port id="1" names="230" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -3191,7 +3191,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -3199,7 +3199,7 @@
 			<output>
 				<port id="1" names="231" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -3210,7 +3210,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -3218,7 +3218,7 @@
 			<output>
 				<port id="1" names="232" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -3229,25 +3229,25 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="3" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -3255,18 +3255,18 @@
 			<output>
 				<port id="4" names="233" precision="FP16">
 					<dim>1</dim>
-					<dim>1024</dim>
+					<dim>512</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="176" name="model.model.model.9.cv2.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="7282752" shape="512, 1024, 1, 1" size="1048576"/>
+			<data element_type="f16" offset="1824800" shape="256, 512, 1, 1" size="262144"/>
 			<output>
 				<port id="0" names="model.model.model.9.cv2.conv.weight" precision="FP16">
+					<dim>256</dim>
 					<dim>512</dim>
-					<dim>1024</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3277,13 +3277,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>1024</dim>
+					<dim>512</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
+					<dim>256</dim>
 					<dim>512</dim>
-					<dim>1024</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3291,18 +3291,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="178" name="Conv_112/Dims3328" type="Const" version="opset1">
-			<data element_type="f16" offset="8331328" shape="1, 512, 1, 1" size="1024"/>
+		<layer id="178" name="Conv_112/Dims3430" type="Const" version="opset1">
+			<data element_type="f16" offset="2086944" shape="1, 256, 1, 1" size="512"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3313,13 +3313,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3327,7 +3327,7 @@
 			<output>
 				<port id="2" names="234" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -3337,7 +3337,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -3345,18 +3345,18 @@
 			<output>
 				<port id="1" names="236" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="181" name="model.model.model.10.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="8332352" shape="256, 512, 1, 1" size="262144"/>
+			<data element_type="f16" offset="2087456" shape="128, 256, 1, 1" size="65536"/>
 			<output>
 				<port id="0" names="model.model.model.10.conv.weight" precision="FP16">
+					<dim>128</dim>
 					<dim>256</dim>
-					<dim>512</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3367,13 +3367,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
+					<dim>128</dim>
 					<dim>256</dim>
-					<dim>512</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3381,18 +3381,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="183" name="Conv_115/Dims3394" type="Const" version="opset1">
-			<data element_type="f16" offset="8594496" shape="1, 256, 1, 1" size="512"/>
+		<layer id="183" name="Conv_115/Dims3292" type="Const" version="opset1">
+			<data element_type="f16" offset="2152992" shape="1, 128, 1, 1" size="256"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3403,13 +3403,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3417,7 +3417,7 @@
 			<output>
 				<port id="2" names="237" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -3427,7 +3427,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -3435,7 +3435,7 @@
 			<output>
 				<port id="1" names="239" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -3446,7 +3446,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -3470,8 +3470,8 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="188" name="134511140" type="Const" version="opset1">
-			<data element_type="f32" offset="8595008" shape="4" size="16"/>
+		<layer id="188" name="134511233" type="Const" version="opset1">
+			<data element_type="f32" offset="2153248" shape="4" size="16"/>
 			<output>
 				<port id="0" names="1345" precision="FP32">
 					<dim>4</dim>
@@ -3494,8 +3494,8 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="190" name="Resize_119/Add_input_port_1/value267210969" type="Const" version="opset1">
-			<data element_type="f32" offset="8595024" shape="1" size="4"/>
+		<layer id="190" name="Resize_119/Add_input_port_1/value267211242" type="Const" version="opset1">
+			<data element_type="f32" offset="2153264" shape="1" size="4"/>
 			<output>
 				<port id="0" precision="FP32">
 					<dim>1</dim>
@@ -3543,24 +3543,24 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="194" name="Resize_119/StridedSlice_sizes_input_port_1/value265410975" type="Const" version="opset1">
-			<data element_type="i64" offset="8595028" shape="1" size="8"/>
+		<layer id="194" name="Resize_119/StridedSlice_sizes_input_port_1/value265410885" type="Const" version="opset1">
+			<data element_type="i64" offset="2153268" shape="1" size="8"/>
 			<output>
 				<port id="0" precision="I64">
 					<dim>1</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="195" name="Resize_119/StridedSlice_sizes_input_port_2/value265611104" type="Const" version="opset1">
-			<data element_type="i64" offset="8595036" shape="1" size="8"/>
+		<layer id="195" name="Resize_119/StridedSlice_sizes_input_port_2/value265611131" type="Const" version="opset1">
+			<data element_type="i64" offset="2153276" shape="1" size="8"/>
 			<output>
 				<port id="0" precision="I64">
 					<dim>1</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="196" name="Resize_119/StridedSlice_sizes_input_port_3/value265811203" type="Const" version="opset1">
-			<data element_type="i64" offset="8595044" shape="1" size="8"/>
+		<layer id="196" name="Resize_119/StridedSlice_sizes_input_port_3/value265811236" type="Const" version="opset1">
+			<data element_type="i64" offset="2153284" shape="1" size="8"/>
 			<output>
 				<port id="0" precision="I64">
 					<dim>1</dim>
@@ -3589,16 +3589,16 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="198" name="Resize_119/StridedSlice_scales268411188" type="Const" version="opset1">
-			<data element_type="f32" offset="8595052" shape="2" size="8"/>
+		<layer id="198" name="Resize_119/StridedSlice_scales268411074" type="Const" version="opset1">
+			<data element_type="f32" offset="2153292" shape="2" size="8"/>
 			<output>
 				<port id="0" precision="FP32">
 					<dim>2</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="199" name="Resize_119/axis266810912" type="Const" version="opset1">
-			<data element_type="i64" offset="8595060" shape="2" size="16"/>
+		<layer id="199" name="Resize_119/axis266810894" type="Const" version="opset1">
+			<data element_type="i64" offset="2153300" shape="2" size="16"/>
 			<output>
 				<port id="0" precision="I64">
 					<dim>2</dim>
@@ -3610,7 +3610,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -3627,7 +3627,7 @@
 			<output>
 				<port id="4" names="244" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -3638,13 +3638,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -3652,18 +3652,18 @@
 			<output>
 				<port id="2" names="245" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="202" name="model.model.model.13.cv1.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="8595076" shape="128, 512, 1, 1" size="131072"/>
+			<data element_type="f16" offset="2153316" shape="64, 256, 1, 1" size="32768"/>
 			<output>
 				<port id="0" names="model.model.model.13.cv1.conv.weight" precision="FP16">
-					<dim>128</dim>
-					<dim>512</dim>
+					<dim>64</dim>
+					<dim>256</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3674,13 +3674,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>128</dim>
-					<dim>512</dim>
+					<dim>64</dim>
+					<dim>256</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3688,18 +3688,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="204" name="Conv_121/Dims3346" type="Const" version="opset1">
-			<data element_type="f16" offset="8726148" shape="1, 128, 1, 1" size="256"/>
+			<data element_type="f16" offset="2186084" shape="1, 64, 1, 1" size="128"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3710,13 +3710,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3724,7 +3724,7 @@
 			<output>
 				<port id="2" names="246" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -3734,7 +3734,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -3742,18 +3742,18 @@
 			<output>
 				<port id="1" names="248" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="207" name="model.model.model.13.m.0.cv1.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="8726404" shape="128, 128, 1, 1" size="32768"/>
+			<data element_type="f16" offset="2186212" shape="64, 64, 1, 1" size="8192"/>
 			<output>
 				<port id="0" names="model.model.model.13.m.0.cv1.conv.weight" precision="FP16">
-					<dim>128</dim>
-					<dim>128</dim>
+					<dim>64</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3764,13 +3764,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>128</dim>
-					<dim>128</dim>
+					<dim>64</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3778,18 +3778,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="209" name="Conv_124/Dims3472" type="Const" version="opset1">
-			<data element_type="f16" offset="8759172" shape="1, 128, 1, 1" size="256"/>
+		<layer id="209" name="Conv_124/Dims3424" type="Const" version="opset1">
+			<data element_type="f16" offset="2194404" shape="1, 64, 1, 1" size="128"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3800,13 +3800,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3814,7 +3814,7 @@
 			<output>
 				<port id="2" names="249" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -3824,7 +3824,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -3832,18 +3832,18 @@
 			<output>
 				<port id="1" names="251" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="212" name="model.model.model.13.m.0.cv2.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="8759428" shape="128, 128, 3, 3" size="294912"/>
+			<data element_type="f16" offset="2194532" shape="64, 64, 3, 3" size="73728"/>
 			<output>
 				<port id="0" names="model.model.model.13.m.0.cv2.conv.weight" precision="FP16">
-					<dim>128</dim>
-					<dim>128</dim>
+					<dim>64</dim>
+					<dim>64</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -3854,13 +3854,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>128</dim>
-					<dim>128</dim>
+					<dim>64</dim>
+					<dim>64</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -3868,18 +3868,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="214" name="Conv_127/Dims3160" type="Const" version="opset1">
-			<data element_type="f16" offset="9054340" shape="1, 128, 1, 1" size="256"/>
+		<layer id="214" name="Conv_127/Dims3250" type="Const" version="opset1">
+			<data element_type="f16" offset="2268260" shape="1, 64, 1, 1" size="128"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3890,13 +3890,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3904,7 +3904,7 @@
 			<output>
 				<port id="2" names="252" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -3914,7 +3914,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -3922,18 +3922,18 @@
 			<output>
 				<port id="1" names="254" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="217" name="model.model.model.13.cv2.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="9054596" shape="128, 512, 1, 1" size="131072"/>
+			<data element_type="f16" offset="2268388" shape="64, 256, 1, 1" size="32768"/>
 			<output>
 				<port id="0" names="model.model.model.13.cv2.conv.weight" precision="FP16">
-					<dim>128</dim>
-					<dim>512</dim>
+					<dim>64</dim>
+					<dim>256</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3944,13 +3944,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>128</dim>
-					<dim>512</dim>
+					<dim>64</dim>
+					<dim>256</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3958,18 +3958,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="219" name="Conv_130/Dims3208" type="Const" version="opset1">
-			<data element_type="f16" offset="9185668" shape="1, 128, 1, 1" size="256"/>
+		<layer id="219" name="Conv_130/Dims3268" type="Const" version="opset1">
+			<data element_type="f16" offset="2301156" shape="1, 64, 1, 1" size="128"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3980,13 +3980,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -3994,7 +3994,7 @@
 			<output>
 				<port id="2" names="255" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -4004,7 +4004,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -4012,7 +4012,7 @@
 			<output>
 				<port id="1" names="257" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -4023,13 +4023,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -4037,18 +4037,18 @@
 			<output>
 				<port id="2" names="258" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="223" name="model.model.model.13.cv3.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="9185924" shape="256, 256, 1, 1" size="131072"/>
+			<data element_type="f16" offset="2301284" shape="128, 128, 1, 1" size="32768"/>
 			<output>
 				<port id="0" names="model.model.model.13.cv3.conv.weight" precision="FP16">
-					<dim>256</dim>
-					<dim>256</dim>
+					<dim>128</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -4059,13 +4059,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>256</dim>
-					<dim>256</dim>
+					<dim>128</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -4073,18 +4073,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="225" name="Conv_134/Dims3382" type="Const" version="opset1">
-			<data element_type="f16" offset="9316996" shape="1, 256, 1, 1" size="512"/>
+		<layer id="225" name="Conv_134/Dims3334" type="Const" version="opset1">
+			<data element_type="f16" offset="2334052" shape="1, 128, 1, 1" size="256"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -4095,13 +4095,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -4109,7 +4109,7 @@
 			<output>
 				<port id="2" names="259" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -4119,7 +4119,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -4127,18 +4127,18 @@
 			<output>
 				<port id="1" names="261" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="228" name="model.model.model.14.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="9317508" shape="128, 256, 1, 1" size="65536"/>
+			<data element_type="f16" offset="2334308" shape="64, 128, 1, 1" size="16384"/>
 			<output>
 				<port id="0" names="model.model.model.14.conv.weight" precision="FP16">
+					<dim>64</dim>
 					<dim>128</dim>
-					<dim>256</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -4149,13 +4149,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
+					<dim>64</dim>
 					<dim>128</dim>
-					<dim>256</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -4163,18 +4163,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="230" name="Conv_137/Dims3244" type="Const" version="opset1">
-			<data element_type="f16" offset="9383044" shape="1, 128, 1, 1" size="256"/>
+		<layer id="230" name="Conv_137/Dims3304" type="Const" version="opset1">
+			<data element_type="f16" offset="2350692" shape="1, 64, 1, 1" size="128"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -4185,13 +4185,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -4199,7 +4199,7 @@
 			<output>
 				<port id="2" names="262" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -4209,7 +4209,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -4217,7 +4217,7 @@
 			<output>
 				<port id="1" names="264" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -4228,7 +4228,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -4253,7 +4253,7 @@
 			</output>
 		</layer>
 		<layer id="235" name="1345" type="Const" version="opset1">
-			<data element_type="f32" offset="8595008" shape="4" size="16"/>
+			<data element_type="f32" offset="2153248" shape="4" size="16"/>
 			<output>
 				<port id="0" names="1345" precision="FP32">
 					<dim>4</dim>
@@ -4276,8 +4276,8 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="237" name="Resize_141/Add_input_port_1/value270611200" type="Const" version="opset1">
-			<data element_type="f32" offset="8595024" shape="1" size="4"/>
+		<layer id="237" name="Resize_141/Add_input_port_1/value270611164" type="Const" version="opset1">
+			<data element_type="f32" offset="2153264" shape="1" size="4"/>
 			<output>
 				<port id="0" precision="FP32">
 					<dim>1</dim>
@@ -4325,24 +4325,24 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="241" name="Resize_141/StridedSlice_sizes_input_port_1/value268810903" type="Const" version="opset1">
-			<data element_type="i64" offset="8595028" shape="1" size="8"/>
+		<layer id="241" name="Resize_141/StridedSlice_sizes_input_port_1/value268811068" type="Const" version="opset1">
+			<data element_type="i64" offset="2153268" shape="1" size="8"/>
 			<output>
 				<port id="0" precision="I64">
 					<dim>1</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="242" name="Resize_141/StridedSlice_sizes_input_port_2/value269011245" type="Const" version="opset1">
-			<data element_type="i64" offset="8595036" shape="1" size="8"/>
+		<layer id="242" name="Resize_141/StridedSlice_sizes_input_port_2/value269010942" type="Const" version="opset1">
+			<data element_type="i64" offset="2153276" shape="1" size="8"/>
 			<output>
 				<port id="0" precision="I64">
 					<dim>1</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="243" name="Resize_141/StridedSlice_sizes_input_port_3/value269211158" type="Const" version="opset1">
-			<data element_type="i64" offset="8595044" shape="1" size="8"/>
+		<layer id="243" name="Resize_141/StridedSlice_sizes_input_port_3/value269211095" type="Const" version="opset1">
+			<data element_type="i64" offset="2153284" shape="1" size="8"/>
 			<output>
 				<port id="0" precision="I64">
 					<dim>1</dim>
@@ -4371,16 +4371,16 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="245" name="Resize_141/StridedSlice_scales271811023" type="Const" version="opset1">
-			<data element_type="f32" offset="8595052" shape="2" size="8"/>
+		<layer id="245" name="Resize_141/StridedSlice_scales271811260" type="Const" version="opset1">
+			<data element_type="f32" offset="2153292" shape="2" size="8"/>
 			<output>
 				<port id="0" precision="FP32">
 					<dim>2</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="246" name="Resize_141/axis270211173" type="Const" version="opset1">
-			<data element_type="i64" offset="8595060" shape="2" size="16"/>
+		<layer id="246" name="Resize_141/axis270211008" type="Const" version="opset1">
+			<data element_type="i64" offset="2153300" shape="2" size="16"/>
 			<output>
 				<port id="0" precision="I64">
 					<dim>2</dim>
@@ -4392,7 +4392,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -4409,7 +4409,7 @@
 			<output>
 				<port id="4" names="269" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -4420,13 +4420,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -4434,18 +4434,18 @@
 			<output>
 				<port id="2" names="270" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="249" name="model.model.model.17.cv1.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="9383300" shape="64, 256, 1, 1" size="32768"/>
+			<data element_type="f16" offset="2350820" shape="32, 128, 1, 1" size="8192"/>
 			<output>
 				<port id="0" names="model.model.model.17.cv1.conv.weight" precision="FP16">
-					<dim>64</dim>
-					<dim>256</dim>
+					<dim>32</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -4456,13 +4456,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>64</dim>
-					<dim>256</dim>
+					<dim>32</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -4470,18 +4470,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="251" name="Conv_143/Dims3268" type="Const" version="opset1">
-			<data element_type="f16" offset="9416068" shape="1, 64, 1, 1" size="128"/>
+		<layer id="251" name="Conv_143/Dims3454" type="Const" version="opset1">
+			<data element_type="f16" offset="2359012" shape="1, 32, 1, 1" size="64"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -4492,13 +4492,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -4506,7 +4506,7 @@
 			<output>
 				<port id="2" names="271" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -4516,7 +4516,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -4524,18 +4524,18 @@
 			<output>
 				<port id="1" names="273" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="254" name="model.model.model.17.m.0.cv1.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="9416196" shape="64, 64, 1, 1" size="8192"/>
+			<data element_type="f16" offset="2359076" shape="32, 32, 1, 1" size="2048"/>
 			<output>
 				<port id="0" names="model.model.model.17.m.0.cv1.conv.weight" precision="FP16">
-					<dim>64</dim>
-					<dim>64</dim>
+					<dim>32</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -4546,13 +4546,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>64</dim>
-					<dim>64</dim>
+					<dim>32</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -4560,18 +4560,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="256" name="Conv_146/Dims3334" type="Const" version="opset1">
-			<data element_type="f16" offset="9424388" shape="1, 64, 1, 1" size="128"/>
+		<layer id="256" name="Conv_146/Dims3208" type="Const" version="opset1">
+			<data element_type="f16" offset="2361124" shape="1, 32, 1, 1" size="64"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -4582,13 +4582,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -4596,7 +4596,7 @@
 			<output>
 				<port id="2" names="274" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -4606,7 +4606,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -4614,18 +4614,18 @@
 			<output>
 				<port id="1" names="276" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="259" name="model.model.model.17.m.0.cv2.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="9424516" shape="64, 64, 3, 3" size="73728"/>
+			<data element_type="f16" offset="2361188" shape="32, 32, 3, 3" size="18432"/>
 			<output>
 				<port id="0" names="model.model.model.17.m.0.cv2.conv.weight" precision="FP16">
-					<dim>64</dim>
-					<dim>64</dim>
+					<dim>32</dim>
+					<dim>32</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -4636,13 +4636,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>64</dim>
-					<dim>64</dim>
+					<dim>32</dim>
+					<dim>32</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -4650,18 +4650,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="261" name="Conv_149/Dims3304" type="Const" version="opset1">
-			<data element_type="f16" offset="9498244" shape="1, 64, 1, 1" size="128"/>
+		<layer id="261" name="Conv_149/Dims3388" type="Const" version="opset1">
+			<data element_type="f16" offset="2379620" shape="1, 32, 1, 1" size="64"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -4672,13 +4672,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -4686,7 +4686,7 @@
 			<output>
 				<port id="2" names="277" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -4696,7 +4696,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -4704,18 +4704,18 @@
 			<output>
 				<port id="1" names="279" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="264" name="model.model.model.17.cv2.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="9498372" shape="64, 256, 1, 1" size="32768"/>
+			<data element_type="f16" offset="2379684" shape="32, 128, 1, 1" size="8192"/>
 			<output>
 				<port id="0" names="model.model.model.17.cv2.conv.weight" precision="FP16">
-					<dim>64</dim>
-					<dim>256</dim>
+					<dim>32</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -4726,13 +4726,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>64</dim>
-					<dim>256</dim>
+					<dim>32</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -4740,18 +4740,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="266" name="Conv_152/Dims3262" type="Const" version="opset1">
-			<data element_type="f16" offset="9531140" shape="1, 64, 1, 1" size="128"/>
+		<layer id="266" name="Conv_152/Dims3442" type="Const" version="opset1">
+			<data element_type="f16" offset="2387876" shape="1, 32, 1, 1" size="64"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -4762,13 +4762,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -4776,7 +4776,7 @@
 			<output>
 				<port id="2" names="280" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -4786,7 +4786,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -4794,7 +4794,7 @@
 			<output>
 				<port id="1" names="282" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -4805,13 +4805,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>64</dim>
+					<dim>32</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -4819,18 +4819,18 @@
 			<output>
 				<port id="2" names="283" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="270" name="model.model.model.17.cv3.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="9531268" shape="128, 128, 1, 1" size="32768"/>
+			<data element_type="f16" offset="2387940" shape="64, 64, 1, 1" size="8192"/>
 			<output>
 				<port id="0" names="model.model.model.17.cv3.conv.weight" precision="FP16">
-					<dim>128</dim>
-					<dim>128</dim>
+					<dim>64</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -4841,13 +4841,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>128</dim>
-					<dim>128</dim>
+					<dim>64</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -4855,18 +4855,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="272" name="Conv_156/Dims3412" type="Const" version="opset1">
-			<data element_type="f16" offset="9564036" shape="1, 128, 1, 1" size="256"/>
+		<layer id="272" name="Conv_156/Dims3226" type="Const" version="opset1">
+			<data element_type="f16" offset="2396132" shape="1, 64, 1, 1" size="128"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -4877,13 +4877,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -4891,7 +4891,7 @@
 			<output>
 				<port id="2" names="284" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -4901,7 +4901,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
@@ -4909,18 +4909,18 @@
 			<output>
 				<port id="1" names="286" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="275" name="model.model.model.18.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="9564292" shape="128, 128, 3, 3" size="294912"/>
+			<data element_type="f16" offset="2396260" shape="64, 64, 3, 3" size="73728"/>
 			<output>
 				<port id="0" names="model.model.model.18.conv.weight" precision="FP16">
-					<dim>128</dim>
-					<dim>128</dim>
+					<dim>64</dim>
+					<dim>64</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -4931,13 +4931,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>128</dim>
-					<dim>128</dim>
+					<dim>64</dim>
+					<dim>64</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -4945,18 +4945,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="277" name="Conv_159/Dims3178" type="Const" version="opset1">
-			<data element_type="f16" offset="9859204" shape="1, 128, 1, 1" size="256"/>
+		<layer id="277" name="Conv_159/Dims3244" type="Const" version="opset1">
+			<data element_type="f16" offset="2469988" shape="1, 64, 1, 1" size="128"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -4967,13 +4967,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -4981,7 +4981,7 @@
 			<output>
 				<port id="2" names="287" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -4991,7 +4991,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -4999,7 +4999,7 @@
 			<output>
 				<port id="1" names="289" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -5010,13 +5010,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -5024,18 +5024,18 @@
 			<output>
 				<port id="2" names="290" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="281" name="model.model.model.20.cv1.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="9859460" shape="128, 256, 1, 1" size="65536"/>
+			<data element_type="f16" offset="2470116" shape="64, 128, 1, 1" size="16384"/>
 			<output>
 				<port id="0" names="model.model.model.20.cv1.conv.weight" precision="FP16">
+					<dim>64</dim>
 					<dim>128</dim>
-					<dim>256</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5046,13 +5046,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
+					<dim>64</dim>
 					<dim>128</dim>
-					<dim>256</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5060,18 +5060,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="283" name="Conv_163/Dims3172" type="Const" version="opset1">
-			<data element_type="f16" offset="9924996" shape="1, 128, 1, 1" size="256"/>
+		<layer id="283" name="Conv_163/Dims3286" type="Const" version="opset1">
+			<data element_type="f16" offset="2486500" shape="1, 64, 1, 1" size="128"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5082,13 +5082,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5096,7 +5096,7 @@
 			<output>
 				<port id="2" names="291" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -5106,7 +5106,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -5114,18 +5114,18 @@
 			<output>
 				<port id="1" names="293" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="286" name="model.model.model.20.m.0.cv1.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="9925252" shape="128, 128, 1, 1" size="32768"/>
+			<data element_type="f16" offset="2486628" shape="64, 64, 1, 1" size="8192"/>
 			<output>
 				<port id="0" names="model.model.model.20.m.0.cv1.conv.weight" precision="FP16">
-					<dim>128</dim>
-					<dim>128</dim>
+					<dim>64</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5136,13 +5136,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>128</dim>
-					<dim>128</dim>
+					<dim>64</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5150,18 +5150,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="288" name="Conv_166/Dims3232" type="Const" version="opset1">
-			<data element_type="f16" offset="9958020" shape="1, 128, 1, 1" size="256"/>
+		<layer id="288" name="Conv_166/Dims3418" type="Const" version="opset1">
+			<data element_type="f16" offset="2494820" shape="1, 64, 1, 1" size="128"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5172,13 +5172,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5186,7 +5186,7 @@
 			<output>
 				<port id="2" names="294" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -5196,7 +5196,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -5204,18 +5204,18 @@
 			<output>
 				<port id="1" names="296" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="291" name="model.model.model.20.m.0.cv2.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="9958276" shape="128, 128, 3, 3" size="294912"/>
+			<data element_type="f16" offset="2494948" shape="64, 64, 3, 3" size="73728"/>
 			<output>
 				<port id="0" names="model.model.model.20.m.0.cv2.conv.weight" precision="FP16">
-					<dim>128</dim>
-					<dim>128</dim>
+					<dim>64</dim>
+					<dim>64</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -5226,13 +5226,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>128</dim>
-					<dim>128</dim>
+					<dim>64</dim>
+					<dim>64</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -5240,18 +5240,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="293" name="Conv_169/Dims3190" type="Const" version="opset1">
-			<data element_type="f16" offset="10253188" shape="1, 128, 1, 1" size="256"/>
+		<layer id="293" name="Conv_169/Dims3340" type="Const" version="opset1">
+			<data element_type="f16" offset="2568676" shape="1, 64, 1, 1" size="128"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5262,13 +5262,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5276,7 +5276,7 @@
 			<output>
 				<port id="2" names="297" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -5286,7 +5286,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -5294,18 +5294,18 @@
 			<output>
 				<port id="1" names="299" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="296" name="model.model.model.20.cv2.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="10253444" shape="128, 256, 1, 1" size="65536"/>
+			<data element_type="f16" offset="2568804" shape="64, 128, 1, 1" size="16384"/>
 			<output>
 				<port id="0" names="model.model.model.20.cv2.conv.weight" precision="FP16">
+					<dim>64</dim>
 					<dim>128</dim>
-					<dim>256</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5316,13 +5316,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
+					<dim>64</dim>
 					<dim>128</dim>
-					<dim>256</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5330,18 +5330,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="298" name="Conv_172/Dims3460" type="Const" version="opset1">
-			<data element_type="f16" offset="10318980" shape="1, 128, 1, 1" size="256"/>
+		<layer id="298" name="Conv_172/Dims3376" type="Const" version="opset1">
+			<data element_type="f16" offset="2585188" shape="1, 64, 1, 1" size="128"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5352,13 +5352,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5366,7 +5366,7 @@
 			<output>
 				<port id="2" names="300" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -5376,7 +5376,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -5384,7 +5384,7 @@
 			<output>
 				<port id="1" names="302" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -5395,13 +5395,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -5409,18 +5409,18 @@
 			<output>
 				<port id="2" names="303" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="302" name="model.model.model.20.cv3.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="10319236" shape="256, 256, 1, 1" size="131072"/>
+			<data element_type="f16" offset="2585316" shape="128, 128, 1, 1" size="32768"/>
 			<output>
 				<port id="0" names="model.model.model.20.cv3.conv.weight" precision="FP16">
-					<dim>256</dim>
-					<dim>256</dim>
+					<dim>128</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5431,13 +5431,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>256</dim>
-					<dim>256</dim>
+					<dim>128</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5445,18 +5445,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="304" name="Conv_176/Dims3418" type="Const" version="opset1">
-			<data element_type="f16" offset="10450308" shape="1, 256, 1, 1" size="512"/>
+		<layer id="304" name="Conv_176/Dims3460" type="Const" version="opset1">
+			<data element_type="f16" offset="2618084" shape="1, 128, 1, 1" size="256"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5467,13 +5467,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5481,7 +5481,7 @@
 			<output>
 				<port id="2" names="304" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -5491,7 +5491,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
@@ -5499,18 +5499,18 @@
 			<output>
 				<port id="1" names="306" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="307" name="model.model.model.21.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="10450820" shape="256, 256, 3, 3" size="1179648"/>
+			<data element_type="f16" offset="2618340" shape="128, 128, 3, 3" size="294912"/>
 			<output>
 				<port id="0" names="model.model.model.21.conv.weight" precision="FP16">
-					<dim>256</dim>
-					<dim>256</dim>
+					<dim>128</dim>
+					<dim>128</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -5521,13 +5521,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>256</dim>
-					<dim>256</dim>
+					<dim>128</dim>
+					<dim>128</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -5535,18 +5535,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="309" name="Conv_179/Dims3196" type="Const" version="opset1">
-			<data element_type="f16" offset="11630468" shape="1, 256, 1, 1" size="512"/>
+		<layer id="309" name="Conv_179/Dims3166" type="Const" version="opset1">
+			<data element_type="f16" offset="2913252" shape="1, 128, 1, 1" size="256"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5557,13 +5557,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5571,7 +5571,7 @@
 			<output>
 				<port id="2" names="307" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -5581,7 +5581,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -5589,7 +5589,7 @@
 			<output>
 				<port id="1" names="309" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -5600,13 +5600,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -5614,18 +5614,18 @@
 			<output>
 				<port id="2" names="310" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="313" name="model.model.model.23.cv1.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="11630980" shape="256, 512, 1, 1" size="262144"/>
+			<data element_type="f16" offset="2913508" shape="128, 256, 1, 1" size="65536"/>
 			<output>
 				<port id="0" names="model.model.model.23.cv1.conv.weight" precision="FP16">
+					<dim>128</dim>
 					<dim>256</dim>
-					<dim>512</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5636,13 +5636,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
+					<dim>128</dim>
 					<dim>256</dim>
-					<dim>512</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5650,18 +5650,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="315" name="Conv_183/Dims3310" type="Const" version="opset1">
-			<data element_type="f16" offset="11893124" shape="1, 256, 1, 1" size="512"/>
+		<layer id="315" name="Conv_183/Dims3472" type="Const" version="opset1">
+			<data element_type="f16" offset="2979044" shape="1, 128, 1, 1" size="256"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5672,13 +5672,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5686,7 +5686,7 @@
 			<output>
 				<port id="2" names="311" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -5696,7 +5696,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -5704,18 +5704,18 @@
 			<output>
 				<port id="1" names="313" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="318" name="model.model.model.23.m.0.cv1.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="11893636" shape="256, 256, 1, 1" size="131072"/>
+			<data element_type="f16" offset="2979300" shape="128, 128, 1, 1" size="32768"/>
 			<output>
 				<port id="0" names="model.model.model.23.m.0.cv1.conv.weight" precision="FP16">
-					<dim>256</dim>
-					<dim>256</dim>
+					<dim>128</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5726,13 +5726,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>256</dim>
-					<dim>256</dim>
+					<dim>128</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5740,18 +5740,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="320" name="Conv_186/Dims3274" type="Const" version="opset1">
-			<data element_type="f16" offset="12024708" shape="1, 256, 1, 1" size="512"/>
+		<layer id="320" name="Conv_186/Dims3328" type="Const" version="opset1">
+			<data element_type="f16" offset="3012068" shape="1, 128, 1, 1" size="256"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5762,13 +5762,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5776,7 +5776,7 @@
 			<output>
 				<port id="2" names="314" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -5786,7 +5786,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -5794,18 +5794,18 @@
 			<output>
 				<port id="1" names="316" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="323" name="model.model.model.23.m.0.cv2.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="12025220" shape="256, 256, 3, 3" size="1179648"/>
+			<data element_type="f16" offset="3012324" shape="128, 128, 3, 3" size="294912"/>
 			<output>
 				<port id="0" names="model.model.model.23.m.0.cv2.conv.weight" precision="FP16">
-					<dim>256</dim>
-					<dim>256</dim>
+					<dim>128</dim>
+					<dim>128</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -5816,13 +5816,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>256</dim>
-					<dim>256</dim>
+					<dim>128</dim>
+					<dim>128</dim>
 					<dim>3</dim>
 					<dim>3</dim>
 				</port>
@@ -5830,18 +5830,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="325" name="Conv_189/Dims3424" type="Const" version="opset1">
-			<data element_type="f16" offset="13204868" shape="1, 256, 1, 1" size="512"/>
+		<layer id="325" name="Conv_189/Dims3484" type="Const" version="opset1">
+			<data element_type="f16" offset="3307236" shape="1, 128, 1, 1" size="256"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5852,13 +5852,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5866,7 +5866,7 @@
 			<output>
 				<port id="2" names="317" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -5876,7 +5876,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -5884,18 +5884,18 @@
 			<output>
 				<port id="1" names="319" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="328" name="model.model.model.23.cv2.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="13205380" shape="256, 512, 1, 1" size="262144"/>
+			<data element_type="f16" offset="3307492" shape="128, 256, 1, 1" size="65536"/>
 			<output>
 				<port id="0" names="model.model.model.23.cv2.conv.weight" precision="FP16">
+					<dim>128</dim>
 					<dim>256</dim>
-					<dim>512</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5906,13 +5906,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
+					<dim>128</dim>
 					<dim>256</dim>
-					<dim>512</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5920,18 +5920,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="330" name="Conv_192/Dims3322" type="Const" version="opset1">
-			<data element_type="f16" offset="13467524" shape="1, 256, 1, 1" size="512"/>
+		<layer id="330" name="Conv_192/Dims3160" type="Const" version="opset1">
+			<data element_type="f16" offset="3373028" shape="1, 128, 1, 1" size="256"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5942,13 +5942,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -5956,7 +5956,7 @@
 			<output>
 				<port id="2" names="320" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -5966,7 +5966,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -5974,7 +5974,7 @@
 			<output>
 				<port id="1" names="322" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -5985,13 +5985,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -5999,18 +5999,18 @@
 			<output>
 				<port id="2" names="323" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="334" name="model.model.model.23.cv3.conv.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="13468036" shape="512, 512, 1, 1" size="524288"/>
+			<data element_type="f16" offset="3373284" shape="256, 256, 1, 1" size="131072"/>
 			<output>
 				<port id="0" names="model.model.model.23.cv3.conv.weight" precision="FP16">
-					<dim>512</dim>
-					<dim>512</dim>
+					<dim>256</dim>
+					<dim>256</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -6021,13 +6021,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
-					<dim>512</dim>
-					<dim>512</dim>
+					<dim>256</dim>
+					<dim>256</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -6035,18 +6035,18 @@
 			<output>
 				<port id="2" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
-		<layer id="336" name="Conv_196/Dims3286" type="Const" version="opset1">
-			<data element_type="f16" offset="13992324" shape="1, 512, 1, 1" size="1024"/>
+		<layer id="336" name="Conv_196/Dims3196" type="Const" version="opset1">
+			<data element_type="f16" offset="3504356" shape="1, 256, 1, 1" size="512"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -6057,13 +6057,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -6071,7 +6071,7 @@
 			<output>
 				<port id="2" names="324" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -6081,7 +6081,7 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
@@ -6089,18 +6089,18 @@
 			<output>
 				<port id="1" names="326" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 			</output>
 		</layer>
 		<layer id="339" name="model.model.model.24.m.2.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="13993348" shape="18, 512, 1, 1" size="18432"/>
+			<data element_type="f16" offset="3504868" shape="18, 256, 1, 1" size="9216"/>
 			<output>
 				<port id="0" names="model.model.model.24.m.2.weight" precision="FP16">
 					<dim>18</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -6111,13 +6111,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>20</dim>
 					<dim>20</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>18</dim>
-					<dim>512</dim>
+					<dim>256</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -6131,8 +6131,8 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="341" name="Conv_821/Dims3376" type="Const" version="opset1">
-			<data element_type="f16" offset="14011780" shape="1, 18, 1, 1" size="36"/>
+		<layer id="341" name="Conv_821/Dims3154" type="Const" version="opset1">
+			<data element_type="f16" offset="3514084" shape="1, 18, 1, 1" size="36"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
@@ -6178,11 +6178,11 @@
 			</input>
 		</layer>
 		<layer id="344" name="model.model.model.24.m.1.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="14011816" shape="18, 256, 1, 1" size="9216"/>
+			<data element_type="f16" offset="3514120" shape="18, 128, 1, 1" size="4608"/>
 			<output>
 				<port id="0" names="model.model.model.24.m.1.weight" precision="FP16">
 					<dim>18</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -6193,13 +6193,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>40</dim>
 					<dim>40</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>18</dim>
-					<dim>256</dim>
+					<dim>128</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -6213,8 +6213,8 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="346" name="Conv_510/Dims3154" type="Const" version="opset1">
-			<data element_type="f16" offset="14021032" shape="1, 18, 1, 1" size="36"/>
+		<layer id="346" name="Conv_510/Dims3232" type="Const" version="opset1">
+			<data element_type="f16" offset="3518728" shape="1, 18, 1, 1" size="36"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
@@ -6260,11 +6260,11 @@
 			</input>
 		</layer>
 		<layer id="349" name="model.model.model.24.m.0.weight" type="Const" version="opset1">
-			<data element_type="f16" offset="14021068" shape="18, 128, 1, 1" size="4608"/>
+			<data element_type="f16" offset="3518764" shape="18, 64, 1, 1" size="2304"/>
 			<output>
 				<port id="0" names="model.model.model.24.m.0.weight" precision="FP16">
 					<dim>18</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -6275,13 +6275,13 @@
 			<input>
 				<port id="0" precision="FP16">
 					<dim>1</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>80</dim>
 					<dim>80</dim>
 				</port>
 				<port id="1" precision="FP16">
 					<dim>18</dim>
-					<dim>128</dim>
+					<dim>64</dim>
 					<dim>1</dim>
 					<dim>1</dim>
 				</port>
@@ -6295,8 +6295,8 @@
 				</port>
 			</output>
 		</layer>
-		<layer id="351" name="Conv_199/Dims3484" type="Const" version="opset1">
-			<data element_type="f16" offset="14025676" shape="1, 18, 1, 1" size="36"/>
+		<layer id="351" name="Conv_199/Dims3370" type="Const" version="opset1">
+			<data element_type="f16" offset="3521068" shape="1, 18, 1, 1" size="36"/>
 			<output>
 				<port id="0" precision="FP16">
 					<dim>1</dim>

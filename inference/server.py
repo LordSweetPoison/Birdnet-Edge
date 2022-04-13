@@ -2,6 +2,9 @@ import cv2
 from datetime import datetime 
 import requests
 import base64
+import boto3
+from io import BytesIO
+from PIL import Image
 
 from infer import ObjectDetector
 
@@ -9,7 +12,10 @@ from flask import Flask, render_template, Response, jsonify
 
 from celery import Celery
 
-from config import ROBOFLOW_PRIVATE
+from config import ACCESS_KEY_ID, SECRET_ACCESS_KEY
+
+# define S3 bucket name
+S3_BUCKET = 'birdnet-edge-brad'
 
 app = Flask(__name__)
 
@@ -37,25 +43,47 @@ if __name__ == "__main__":
 LOGGER = print
 
 @celery.task
-def async_upload_photo(to_post):
-    # define daatset
-    dataset = 'birdcamid'
+def async_upload_photo(image, objects):
+    """upload image and segments to s3
+    segments are label: datetime_xmin_ymin_xmax_ymax.jpg
+    """
+    extention = '.jpg'
+
+    s3 = boto3.client('s3', aws_access_key_id = ACCESS_KEY_ID, aws_secret_access_key = SECRET_ACCESS_KEY)
 
     # name photo
     photo_name = datetime.now().strftime("%d%b%Y%H%M%S")
 
-    # create upload url
-    upload_url = "".join([
-        f"https://api.roboflow.com/dataset/{dataset}/upload",
-        f"?api_key={ROBOFLOW_PRIVATE}",
-        f"&name={photo_name}.jpg",
-        "&split=train"
-    ])
-    # post request to upload photo
-    r = requests.post(upload_url, data = to_post, headers = {
-        "Content-Type": "application/x-www-form-urlencoded"
-    })
+    # post the bounding box to be labeled 
+    height, width = image.shape[:2]
 
+    for obj in objects:
+        xmin, ymin, xmax, ymax = int(obj[0] * width), int(obj[1] * height), int(obj[2] * width), int(obj[3] * height)
+
+        # crop out segmented image
+        segment = image[ymin:ymax, xmin:xmax]
+
+        # resize segment to 224, 224 !change for different vectorization steps 
+        segment = cv2.resize(segment, (224, 224))
+
+        # encode the image
+        buffer = Image.fromarray(segment[::-1])
+        to_post = BytesIO()
+        buffer.save(to_post, format = extention)
+        to_post.seek(0)
+
+        # post the segments 
+        filepath = f'segments/{photo_name}_{obj[0]:.4}_{obj[1]:.4}_{obj[2]:.4}_{obj[3]:.4}'.replace('0.', '') + extention
+        s3.upload_fileobj(to_post, S3_BUCKET, filepath)
+
+    # encode the buffer convert buffer to bytes than to ascii
+    buffer = Image.fromarray(image[::-1])
+    to_post = BytesIO()
+    buffer.save(to_post, format = extention)
+    to_post.seek(0)
+    
+    # post full photo
+    s3.upload_fileobj(to_post, S3_BUCKET, 'images/' + photo_name + extention)
 
 def gen_frames():  
     while True:
@@ -66,25 +94,18 @@ def gen_frames():
             break # end the loop is the camera has failed 
 
         # get the image with bounding boxes and post that online
-        detections, birds_in_photo = object_detector(frame, return_detected = True)
+        detections, objects = object_detector(frame, return_detected = True)
 
         # encode the image then convert to bytes 
         _, buffer = cv2.imencode('.jpg', detections)
         out = buffer.tobytes()
 
-        # if birds are in the photo send to celery to upload
-        if birds_in_photo:
+        # if the list of birds (objects) is not empty, upload the photo 
+        if objects:
             # resize the image to size
             image = cv2.resize(frame, (640, 640))
 
-            # encode the buffer
-            _, buffer = cv2.imencode('.jpg', image)
-
-            # convert buffer to bytes than to ascii
-            to_post = base64.b64encode(buffer).decode('ascii')
-
-            # async send photo to roboflow
-            async_upload_photo.apply_async(args = [to_post])
+            async_upload_photo.apply_async(args = [image, objects])
 
         # yield the output 
         yield (b'--frame\r\n'

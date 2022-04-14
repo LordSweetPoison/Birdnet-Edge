@@ -105,7 +105,7 @@ def gen_frames():
             # resize the image to size
             image = cv2.resize(frame, (640, 640))
 
-            async_upload_photo.apply_async(args = [image, objects])
+            async_upload_photo.delay(image, objects)
 
         # yield the output 
         yield (b'--frame\r\n'

@@ -34,7 +34,7 @@ def parse_predictions(preds, threshold = .25, min_edge = .05, img_size = 640):
     # get max class ids
     class_id = np.expand_dims(np.argmax(preds[..., 5:], axis = -1), axis = -1)
 
-    # concat xmin, ymin, xmax, ymax
+    # concat xmin, ymin, xmax, ymax, conf, class id
     preds = np.concatenate([preds[..., :5], class_id], axis = - 1)
 
     return preds
@@ -59,12 +59,13 @@ def intersection_of_union(box_1, box_2):
 
     # gaurd against div 0s
     if area_of_union == 0: return 0
+
     return area_of_overlap / area_of_union
 
 def non_max_surpression(objects, threshold = .5):
     """
     eliminates redundant boxes by checking the interection of union
-     - right now this is O(n^2), thats sloopy and should be fixed
+     - right now this is O(n^2), thats slopy and should be fixed
      - this could get some easy gains through vectorization
     """
     l = len(objects)
@@ -86,6 +87,7 @@ def non_max_surpression(objects, threshold = .5):
 
 
 def create_detector(num_classes = 80, anchors = YOLOV5N_ANCHORS, img_size = 640):
+    
     num_outputs = num_classes + 5 # num outpus per anchor
     num_anchors = len(anchors[0]) // 2 # num anchors 
     
@@ -224,9 +226,9 @@ class ObjectDetector():
 
         self.num_classes = num_classes
     
-    def __call__(self, img, return_detected = False):
+    def __call__(self, img, return_boxes = False):
         """
-        return detected: if true will return a boolean of whether or not a bird was detected
+        return_boxes: 
         """
         # format the cv2 image for input 
         inputs = prep_cv2_img(img) 
@@ -247,9 +249,10 @@ class ObjectDetector():
         # draw the bounding boxes with labels 
         img_out = draw_boxes(img, objects, self.num_classes)
         
-        if return_detected:
-            # return img_out and a boolen representing if objects were detected 
-            return img_out, len(objects) > 0
+        if return_boxes:
+            # return img_out and objects
+            return img_out, objects
+        
         return img_out
 
 if __name__ == "__main__":

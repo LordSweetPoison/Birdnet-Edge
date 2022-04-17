@@ -255,8 +255,8 @@ class ObjectDetector():
         # draw the bounding boxes with labels 
         img_out = draw_boxes(img, objects, self.num_classes)
         
+        # return img_out and objects
         if return_boxes:
-            # return img_out and objects
             return img_out, objects
         
         return img_out

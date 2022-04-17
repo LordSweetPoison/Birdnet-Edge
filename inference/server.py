@@ -69,7 +69,7 @@ def async_upload_photo(image, objects):
         segment = image[ymin:ymax, xmin:xmax]
 
         # encode the image into a buffer
-        buffer = Image.fromarray(segment[::-1])
+        buffer = Image.fromarray(segment[:, :, ::-1])
         to_post = BytesIO()
         buffer.save(to_post, format = 'JPEG')
         to_post.seek(0)
@@ -79,7 +79,7 @@ def async_upload_photo(image, objects):
         S3.upload_fileobj(to_post, S3_BUCKET, filepath)
 
     # encode the image into a buffer
-    buffer = Image.fromarray(image[::-1])
+    buffer = Image.fromarray(image[:, :, ::-1])
     to_post = BytesIO()
     buffer.save(to_post, format = 'JPEG')
     to_post.seek(0)
@@ -96,7 +96,7 @@ def gen_frames():
 
         if not success: # if the camera read was not sucessful 
             LOGGER('Camera read has failed') 
-            break # end the loop is the camera has failed 
+            break # end the loop if the camera has failed 
 
         # get the image with bounding boxes and post that online
         detections, objects = object_detector(frame, return_boxes = True)

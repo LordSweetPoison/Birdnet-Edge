@@ -1,7 +1,5 @@
 import cv2
 from datetime import datetime 
-import requests
-import base64
 import boto3
 from io import BytesIO
 from PIL import Image
@@ -73,7 +71,7 @@ def async_upload_photo(image, objects):
         # encode the image into a buffer
         buffer = Image.fromarray(segment[::-1])
         to_post = BytesIO()
-        buffer.save(to_post, format = extention)
+        buffer.save(to_post, format = 'JPEG')
         to_post.seek(0)
 
         # post the segments 
@@ -83,7 +81,7 @@ def async_upload_photo(image, objects):
     # encode the image into a buffer
     buffer = Image.fromarray(image[::-1])
     to_post = BytesIO()
-    buffer.save(to_post, format = extention)
+    buffer.save(to_post, format = 'JPEG')
     to_post.seek(0)
     
     # post full photo
@@ -104,7 +102,7 @@ def gen_frames():
         detections, objects = object_detector(frame, return_boxes = True)
 
         # encode the image then convert to bytes 
-        _, buffer = cv2.imencode('.jpg', detections)
+        _, buffer = cv2.imencode('.jpeg', detections)
         out = buffer.tobytes()
 
         # if the list of birds (objects) is not empty, upload the photo 

@@ -96,7 +96,7 @@ def gen_frames():
             break # end the loop is the camera has failed 
 
         # get the image with bounding boxes and post that online
-        detections, objects = object_detector(frame, return_detected = True)
+        detections, objects = object_detector(frame, return_boxes = True)
 
         # encode the image then convert to bytes 
         _, buffer = cv2.imencode('.jpg', detections)

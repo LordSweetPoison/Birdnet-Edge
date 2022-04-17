@@ -86,7 +86,7 @@ def non_max_surpression(objects, threshold = .5):
     return objects[(objects[..., 4] > 0.)] 
 
 
-def create_detector(num_classes = 80, anchors = YOLOV5N_ANCHORS, img_size = 640):
+def create_ncs2_detector(num_classes = 80, anchors = YOLOV5N_ANCHORS, img_size = 640):
     
     num_outputs = num_classes + 5 # num outpus per anchor
     num_anchors = len(anchors[0]) // 2 # num anchors 
@@ -211,20 +211,26 @@ class ObjectDetector():
             anchors = YOLOV5N_ANCHORS,
             img_size = 640
             ):
-        # define the intel inference engine
-        self.ie = IECore()
-        
-        # read and load the network onto the device 
-        net = self.ie.read_network(model = f'/home/pi/Birdnet-Edge/models/{model_name}.xml', weights = f'/home/pi/Birdnet-Edge/models/{model_name}.bin')
-        self.net = self.ie.load_network(network = net, device_name = device, num_requests = 2)
 
         self.conf_threshold = conf_threshold
         self.iou_threshold = iou_threshold
-
-        # create the network parsing detetor 
-        self.detector = create_detector(num_classes = num_classes, anchors = anchors, img_size = img_size)
-
         self.num_classes = num_classes
+
+        if device == 'MYRIAD':
+            # define the intel inference engine
+            self.ie = IECore()
+            
+            # read and load the network onto the device 
+            net = self.ie.read_network(model = f'/home/pi/Birdnet-Edge/models/{model_name}.xml', weights = f'/home/pi/Birdnet-Edge/models/{model_name}.bin')
+            self.net = self.ie.load_network(network = net, device_name = device, num_requests = 2)
+
+            # create the network parsing detetor 
+            self.detector = create_ncs2_detector(num_classes = num_classes, anchors = anchors, img_size = img_size)
+        elif device == 'TPU':
+            raise NotImplementedError
+        elif device == 'JETSON':
+            raise NotImplementedError
+
     
     def __call__(self, img, return_boxes = False):
         """
@@ -266,7 +272,7 @@ if __name__ == "__main__":
     net = ie.read_network(model = f'models/{model_name}.xml', weights = f'models/{model_name}.bin')
     exec_net = ie.load_network(network = net, device_name = device, num_requests=2)
 
-    detector = create_detector()  
+    detector = create_ncs2_detector()  
 
     cam = cv2.VideoCapture(0)
 

@@ -4,12 +4,23 @@
 
 Start the redis server (you may need to change the permissions of the run_redis.sh)
 
-'./run_redis.sh'
+~~~
+nohup ./run_redis.sh > redis.out &
+~~~
 
 Start the celery background process
 
-'celery -A server.celery worker --loglevel=info' 
+~~~
+nohup celery -A server.celery worker --loglevel=info > celery.out &
+~~~
 
 Start the web server
 
-'python server.py'
+~~~
+nohup python server.py > server.out &
+~~~
+
+To view the files use tail -F, ei:
+~~~
+tail -F redis.out
+~~~

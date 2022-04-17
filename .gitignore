@@ -29,3 +29,10 @@
 
 # do not ignore the folder data, but do ignore contents
 !/data
+
+# do not ignore labeling files
+!labeling
+!labeling/cluster.py
+!labeling/vectorize.py
+!labeling/models.py
+!labeling/README.md

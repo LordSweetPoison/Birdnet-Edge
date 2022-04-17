@@ -14,8 +14,9 @@ from celery import Celery
 
 from config import ACCESS_KEY_ID, SECRET_ACCESS_KEY
 
-# define S3 bucket name
+# define S3 bucket name and s3 session
 S3_BUCKET = 'birdnet-edge-brad'
+
 
 app = Flask(__name__)
 
@@ -45,11 +46,14 @@ LOGGER = print
 @celery.task
 def async_upload_photo(image, objects):
     """upload image and segments to s3
-    segments are label: datetime_xmin_ymin_xmax_ymax.jpg
+    args: 
+        image: image to be uploaded
+        objects: object to be segmented 
+    segments are labeled: datetime_xmin_ymin_xmax_ymax.jpg
     """
-    extention = '.jpg'
+    S3 = boto3.client('s3', aws_access_key_id = ACCESS_KEY_ID, aws_secret_access_key = SECRET_ACCESS_KEY)
 
-    s3 = boto3.client('s3', aws_access_key_id = ACCESS_KEY_ID, aws_secret_access_key = SECRET_ACCESS_KEY)
+    extention = '.jpg'
 
     # name photo
     photo_name = datetime.now().strftime("%d%b%Y%H%M%S")
@@ -63,10 +67,7 @@ def async_upload_photo(image, objects):
         # crop out segmented image
         segment = image[ymin:ymax, xmin:xmax]
 
-        # resize segment to 224, 224 !change for different vectorization steps 
-        segment = cv2.resize(segment, (224, 224))
-
-        # encode the image
+        # encode the image into a buffer
         buffer = Image.fromarray(segment[::-1])
         to_post = BytesIO()
         buffer.save(to_post, format = extention)
@@ -74,18 +75,19 @@ def async_upload_photo(image, objects):
 
         # post the segments 
         filepath = f'segments/{photo_name}_{obj[0]:.4}_{obj[1]:.4}_{obj[2]:.4}_{obj[3]:.4}'.replace('0.', '') + extention
-        s3.upload_fileobj(to_post, S3_BUCKET, filepath)
+        S3.upload_fileobj(to_post, S3_BUCKET, filepath)
 
-    # encode the buffer convert buffer to bytes than to ascii
+    # encode the image into a buffer
     buffer = Image.fromarray(image[::-1])
     to_post = BytesIO()
     buffer.save(to_post, format = extention)
     to_post.seek(0)
     
     # post full photo
-    s3.upload_fileobj(to_post, S3_BUCKET, 'images/' + photo_name + extention)
+    filepath =  'images/' + photo_name + extention
+    S3.upload_fileobj(to_post, S3_BUCKET, filepath)
 
-def gen_frames():  
+def gen_frames():
     while True:
         success, frame = camera.read()  # read the camera frame
 

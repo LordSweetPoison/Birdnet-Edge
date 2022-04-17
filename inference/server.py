@@ -51,6 +51,7 @@ def async_upload_photo(image, objects):
         objects: object to be segmented 
     segments are labeled: datetime_xmin_ymin_xmax_ymax.jpg
     """
+
     S3 = boto3.client('s3', aws_access_key_id = ACCESS_KEY_ID, aws_secret_access_key = SECRET_ACCESS_KEY)
 
     extention = '.jpg'
@@ -103,7 +104,7 @@ def gen_frames():
         out = buffer.tobytes()
 
         # if the list of birds (objects) is not empty, upload the photo 
-        if objects:
+        if objects.size != 0:
             async_upload_photo.delay(frame, objects)
 
         # yield the output 

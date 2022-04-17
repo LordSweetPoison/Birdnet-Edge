@@ -104,10 +104,7 @@ def gen_frames():
 
         # if the list of birds (objects) is not empty, upload the photo 
         if objects:
-            # resize the image to size
-            image = cv2.resize(frame, (640, 640))
-
-            async_upload_photo.delay(image, objects)
+            async_upload_photo.delay(frame, objects)
 
         # yield the output 
         yield (b'--frame\r\n'

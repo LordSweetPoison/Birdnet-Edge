@@ -284,27 +284,15 @@ class ObjectDetector():
 if __name__ == "__main__":
     iou_threshold = .5
     conf_threshold = .4
-
-    model_name = 'yolov5n'
-    ie = IECore()
-    device = 'CPU'#'MYRIAD'
-
-    net = ie.read_network(model = f'models/{model_name}.xml', weights = f'models/{model_name}.bin')
-    exec_net = ie.load_network(network = net, device_name = device, num_requests=2)
-
-    detector = create_ncs2_detector()  
-
+    from edgetpu import EdgeTPUModel
+    model = EdgeTPUModel('../models/yolov5s-int8_edgetpu.tflite')
+    
     cam = cv2.VideoCapture(0)
 
     while True:
         _, img = cam.read()
 
-        inputs = prep_ncs_cv2_img(img)
-
-        outputs = exec_net.infer(inputs=inputs)
-        outputs = [out for _, out in outputs.items()]
-
-        preds = detector(outputs)
+        preds = model(img)
         objects = parse_predictions(preds, conf_threshold)
         objects = non_max_surpression(objects, threshold = iou_threshold)
         

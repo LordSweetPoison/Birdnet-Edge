@@ -283,7 +283,7 @@ class ObjectDetector():
 
 if __name__ == "__main__":
     iou_threshold = .5
-    conf_threshold = .24
+    conf_threshold = .3
     from edgetpu import EdgeTPUModel
     model = EdgeTPUModel('../models/best-int8_edgetpu.tflite')
     

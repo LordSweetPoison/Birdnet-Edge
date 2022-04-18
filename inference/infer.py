@@ -287,7 +287,7 @@ if __name__ == "__main__":
     from edgetpu import EdgeTPUModel
     model = EdgeTPUModel('../models/yolov5s-int8_edgetpu.tflite')
     
-    cam = cv2.VideoCapture(0)
+    cam = cv2.VideoCapture('/dev/video1')
 
     while True:
         _, img = cam.read()

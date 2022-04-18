@@ -74,7 +74,8 @@ async def run():
     tasks = []
 
     object_detector = ObjectDetector('../models/best-int8_edgetpu.tflite', device = 'TPU', conf_threshold = .4, num_classes = 1, img_size = 448)
-
+    
+    camera = cv2.VideoCapture('/dev/video1')
     while True:
         success, frame = camera.read()  # read the camera frame
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)

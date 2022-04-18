@@ -302,6 +302,8 @@ if __name__ == "__main__":
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
         img_out = model(img)
+
+        img_out = cv2.cvtColor(img_out, cv2.COLOR_BGR2RGB)
         
         cv2.imshow('my webcam', img_out)
 

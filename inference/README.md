@@ -16,6 +16,8 @@ Start the celery background process
 nohup celery -A server.celery worker --loglevel=info > celery.out &
 # to view the output:
 tail -F celery.out
+
+celery -A upload worker --loglevel=info 
 ~~~
 
 Start the web server

@@ -8,11 +8,20 @@ import asyncio
 
 from infer import ObjectDetector
 
+from celery import Celery
+
 from config import ACCESS_KEY_ID, SECRET_ACCESS_KEY
 
 S3_BUCKET = 'birdnet-edge-brad'
 
-async def async_upload_photo(image, objects):
+celery = Celery(
+    __name__,
+    broker = 'redis://localhost:6379/0',
+    backend = 'redis://localhost:6379/0'
+)
+
+@celery.task
+def async_upload_photo(image, objects):
     """upload image and segments to s3
     args: 
         image: image to be uploaded
@@ -20,6 +29,8 @@ async def async_upload_photo(image, objects):
     segments are labeled: datetime_xmin_ymin_xmax_ymax.jpg
     """
     S3 = boto3.client('s3', aws_access_key_id = ACCESS_KEY_ID, aws_secret_access_key = SECRET_ACCESS_KEY)
+    
+    image = np.array(image, dtype = np.uint8)
 
     extention = '.jpeg'
 
@@ -57,10 +68,11 @@ async def async_upload_photo(image, objects):
 
     return None
 
-async def run():
+def run():
     object_detector = ObjectDetector('../models/best-int8_edgetpu.tflite', device = 'TPU', conf_threshold = .4, num_classes = 1, img_size = 448)
     
     camera = cv2.VideoCapture('/dev/video1')
+
     while True:
         success, frame = camera.read()  # read the camera frame
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -74,8 +86,7 @@ async def run():
 
         # if the list of birds (objects) is not empty, upload the photo 
         if objects.size > 0:
-            asyncio.ensure_future(async_upload_photo(frame, objects))
-
+            async_upload_photo.apply_async((frame.tolist(), objects.tolist()))
 
 if __name__ == '__main__':
-    asyncio.run(run())
+    run()

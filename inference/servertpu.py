@@ -15,7 +15,7 @@ from config import ACCESS_KEY_ID, SECRET_ACCESS_KEY
 S3_BUCKET = 'birdnet-edge-brad'
 
 celery = Celery(
-    __name__,
+    'app',
     broker = 'redis://localhost:6379/0',
     backend = 'redis://localhost:6379/0'
 )

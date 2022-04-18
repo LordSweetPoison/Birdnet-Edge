@@ -51,7 +51,7 @@ def async_upload_photo(image, objects):
     
     # post full photo
     filepath =  'images/' + photo_name + extention
-    print(S3.upload_fileobj(to_post, S3_BUCKET, filepath))
+    S3.upload_fileobj(to_post, S3_BUCKET, filepath)
 
     return None
 
@@ -73,7 +73,7 @@ def run():
 
         # if the list of birds (objects) is not empty, upload the photo 
         if objects.size > 0:
-            print('here')
+            print('Bird found')
             async_upload_photo(frame, objects)
 
 if __name__ == '__main__':

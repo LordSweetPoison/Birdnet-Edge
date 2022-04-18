@@ -15,7 +15,7 @@
 !inference/requirements.txt
 !inference/templates
 !inference/templates/*
-!inference/templates/edgetpu.py
+!inference/edgetpu.py
 
 # training files not to ignore 
 !train

@@ -1,7 +1,8 @@
 import numpy as np
 import cv2
-from openvino.inference_engine import IECore
 from math import sin
+import os
+
 
 YOLOV5N_ANCHORS = [
     [10,13, 16,30, 33,23],  # P3/8
@@ -142,10 +143,13 @@ def create_ncs2_detector(num_classes = 80, anchors = YOLOV5N_ANCHORS, img_size =
         
     return detect
 
+def create_tpu_detector(num_classes = 80, ):
+    pass
+
 def to_numpy(tensor):
     return tensor.detach().cpu().numpy() if tensor.requires_grad else tensor.cpu().numpy()
 
-def prep_cv2_img(img_in, size = 640):
+def prep_ncs_cv2_img(img_in, size = 640):
     # prevent hazards 
     img = img_in.copy() 
 
@@ -218,6 +222,7 @@ class ObjectDetector():
 
         if device == 'MYRIAD':
             # define the intel inference engine
+            from openvino.inference_engine import IECore
             self.ie = IECore()
             
             # read and load the network onto the device 
@@ -225,26 +230,41 @@ class ObjectDetector():
             self.net = self.ie.load_network(network = net, device_name = device, num_requests = 2)
 
             # create the network parsing detetor 
-            self.detector = create_ncs2_detector(num_classes = num_classes, anchors = anchors, img_size = img_size)
+            detector = create_ncs2_detector(num_classes = num_classes, anchors = anchors, img_size = img_size)
+
+            # create function to run on image
+            def run(image):
+                # format the cv2 image for input 
+                inputs = prep_ncs_cv2_img(image) 
+
+                # infer the networks and convert the dict to a list
+                outputs = self.net.infer(inputs=inputs) 
+                outputs = [out for _, out in outputs.items()]
+
+                # extract the bounding boxes from the outputs
+                preds = detector(outputs)
+
+                return preds 
+
+            self.run = run
+
         elif device == 'TPU':
-            raise NotImplementedError
+            from edgetpu import EdgeTPUModel
+
+            self.model = EdgeTPUModel('../models/{model_name}')
+
+            self.run = lambda image: self.model(image)
+
         elif device == 'JETSON':
             raise NotImplementedError
 
     
-    def __call__(self, img, return_boxes = False):
+    def __call__(self, image, return_boxes = False):
         """
+        image: image to read 
         return_boxes: 
         """
-        # format the cv2 image for input 
-        inputs = prep_cv2_img(img) 
-
-        # infer the networks and convert the dict to a list
-        outputs = self.net.infer(inputs=inputs) 
-        outputs = [out for _, out in outputs.items()]
-
-        # extract the bounding boxes from the outputs
-        preds = self.detector(outputs)
+        preds = self.run(image)
 
         # parse the predictions, removing any prediction with confidence lower than conf_threshold
         objects = parse_predictions(preds, threshold = self.conf_threshold)
@@ -253,7 +273,7 @@ class ObjectDetector():
         objects = non_max_surpression(objects, threshold = self.iou_threshold)
 
         # draw the bounding boxes with labels 
-        img_out = draw_boxes(img, objects, self.num_classes)
+        img_out = draw_boxes(image, objects, self.num_classes)
         
         # return img_out and objects
         if return_boxes:
@@ -279,7 +299,7 @@ if __name__ == "__main__":
     while True:
         _, img = cam.read()
 
-        inputs = prep_cv2_img(img)
+        inputs = prep_ncs_cv2_img(img)
 
         outputs = exec_net.infer(inputs=inputs)
         outputs = [out for _, out in outputs.items()]

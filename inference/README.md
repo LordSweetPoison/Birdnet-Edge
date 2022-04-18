@@ -21,7 +21,7 @@ tail -F celery.out
 Start the web server
 
 ~~~
-nohup python server.py > server.out &
+nohup python3 server.py > server.out &
 # to view the output:
 tail -F server.out
 ~~~

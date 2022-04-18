@@ -16,7 +16,6 @@ from config import ACCESS_KEY_ID, SECRET_ACCESS_KEY
 # define S3 bucket name and s3 session
 S3_BUCKET = 'birdnet-edge-brad'
 
-
 app = Flask(__name__)
 
 # define celery redis location 
@@ -32,11 +31,11 @@ if __name__ == "__main__":
     model_name = 'yolov5n'
     device = 'MYRIAD'
 
-    print('Setting up network for Intel NCS2')
+    print('Setting Up Inference Backend')
 
     object_detector = ObjectDetector(model_name, device, num_classes = 1, conf_threshold = .2)
 
-    print('Intel NCS2 succesfully initiated')
+    print('Inference Backend Successfully Initiated')
 
     camera = cv2.VideoCapture(0)
 
@@ -69,7 +68,7 @@ def async_upload_photo(image, objects):
         segment = image[ymin:ymax, xmin:xmax]
 
         # encode the image into a buffer
-        buffer = Image.fromarray(segment[:, :, ::-1])
+        buffer = Image.fromarray(segment[::-1])
         to_post = BytesIO()
         buffer.save(to_post, format = 'JPEG')
         to_post.seek(0)
@@ -79,7 +78,7 @@ def async_upload_photo(image, objects):
         S3.upload_fileobj(to_post, S3_BUCKET, filepath)
 
     # encode the image into a buffer
-    buffer = Image.fromarray(image[:, :, ::-1])
+    buffer = Image.fromarray(image[::-1])
     to_post = BytesIO()
     buffer.save(to_post, format = 'JPEG')
     to_post.seek(0)
@@ -123,6 +122,6 @@ def video_feed():
     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
-    # run the app, debug needs to be false becuase it will try to reconnect to the ncs2 if debug is true
+    # run the app, debug needs to be false because it will try to reconnect to the ncs2 if debug is true
     app.run(debug=False, host="0.0.0.0")
 

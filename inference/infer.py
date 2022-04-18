@@ -291,7 +291,7 @@ if __name__ == "__main__":
 
     while True:
         _, img = cam.read()
-
+        img = cv2.resize(img, (448, 448))
         preds = model(img)
         objects = parse_predictions(preds, conf_threshold)
         objects = non_max_surpression(objects, threshold = iou_threshold)

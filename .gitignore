@@ -17,6 +17,7 @@
 !inference/templates/*
 !inference/edgetpu.py
 !inference/servertpu.py
+!inference/upload.py
 
 # training files not to ignore 
 !train

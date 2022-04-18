@@ -12,18 +12,6 @@ from config import ACCESS_KEY_ID, SECRET_ACCESS_KEY
 
 S3_BUCKET = 'birdnet-edge-brad'
 
-# define globals for detection
-model_name = '../models/best-int8_edgetpu.tflite'
-device = 'TPU'
-
-print('Setting up Coral TPU')
-
-object_detector = ObjectDetector(model_name, device,  num_classes = 1, conf_threshold = .2)
-
-print('Coral TPU Successfully Initiated')
-
-camera = cv2.VideoCapture(0)
-
 async def async_upload_photo(image, objects):
     """upload image and segments to s3
     args: 
@@ -87,8 +75,6 @@ async def run():
         # if the list of birds (objects) is not empty, upload the photo 
         if objects.size > 0:
             asyncio.ensure_future(async_upload_photo(frame, objects))
-
- 
 
 
 if __name__ == '__main__':

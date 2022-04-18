@@ -219,6 +219,7 @@ class ObjectDetector():
         self.conf_threshold = conf_threshold
         self.iou_threshold = iou_threshold
         self.num_classes = num_classes
+        self.img_size = img_size
 
         if device == 'MYRIAD':
             # define the intel inference engine
@@ -252,8 +253,13 @@ class ObjectDetector():
             from edgetpu import EdgeTPUModel
 
             self.model = EdgeTPUModel('../models/{model_name}')
+            
+            def run(image):
+                # resize 
+                image = cv2.resize(image, (self.img_size, self.img_size))
+                return self.model(image)
 
-            self.run = lambda image: self.model(image)
+            self.run = run
 
         elif device == 'JETSON':
             raise NotImplementedError
@@ -285,19 +291,18 @@ if __name__ == "__main__":
     iou_threshold = .5
     conf_threshold = .3
     from edgetpu import EdgeTPUModel
-    model = EdgeTPUModel('../models/best-int8_edgetpu.tflite')
+
+    model = ObjectDetector('../models/best-int8_edgetpu.tflite', device = 'TPU', conf_threshold = conf_threshold, num_classes = 1, img_size = 448)
     
     cam = cv2.VideoCapture('/dev/video1')
 
     while True:
         _, img = cam.read()
-        img = cv2.resize(img, (448, 448))
-        preds = model(img)
-        objects = parse_predictions(preds, conf_threshold)
-        objects = non_max_surpression(objects, threshold = iou_threshold)
-        
-        img_out = draw_boxes(img, objects)
 
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+        img_out = model(img)
+        
         cv2.imshow('my webcam', img_out)
 
         if cv2.waitKey(1) == 27: 

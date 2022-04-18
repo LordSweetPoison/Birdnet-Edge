@@ -48,7 +48,6 @@ async def async_upload_photo(image, objects):
         segment = image[ymin:ymax, xmin:xmax]
 
         # encode the image into a buffer
-        segment = cv2.cvtColor(segment, cv2.COLOR_BGR2RGB)
         buffer = Image.fromarray(segment)
         to_post = BytesIO()
         buffer.save(to_post, format = 'JPEG')
@@ -59,7 +58,6 @@ async def async_upload_photo(image, objects):
         S3.upload_fileobj(to_post, S3_BUCKET, filepath)
 
     # encode the image into a buffer
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     buffer = Image.fromarray(image)
     to_post = BytesIO()
     buffer.save(to_post, format = 'JPEG')
@@ -74,8 +72,12 @@ async def async_upload_photo(image, objects):
 async def run():
     # create list of tasks
     tasks = []
+
+    object_detector = ObjectDetector('../models/best-int8_edgetpu.tflite', device = 'TPU', conf_threshold = .4, num_classes = 1, img_size = 448)
+
     while True:
         success, frame = camera.read()  # read the camera frame
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
         if not success: # if the camera read was not sucessful 
             print('Camera read has failed') 

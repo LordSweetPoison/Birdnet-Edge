@@ -70,9 +70,6 @@ async def async_upload_photo(image, objects):
     return None
 
 async def run():
-    # create list of tasks
-    tasks = []
-
     object_detector = ObjectDetector('../models/best-int8_edgetpu.tflite', device = 'TPU', conf_threshold = .4, num_classes = 1, img_size = 448)
     
     camera = cv2.VideoCapture('/dev/video1')
@@ -89,10 +86,9 @@ async def run():
 
         # if the list of birds (objects) is not empty, upload the photo 
         if objects.size > 0:
-            tasks.append(asyncio.create_task(async_upload_photo(frame, objects)))
+            asyncio.ensure_future(async_upload_photo(frame, objects))
 
-    for task in tasks:
-        await task
+ 
 
 
 if __name__ == '__main__':

@@ -285,7 +285,7 @@ if __name__ == "__main__":
     iou_threshold = .5
     conf_threshold = .4
     from edgetpu import EdgeTPUModel
-    model = EdgeTPUModel('../models/yolov5s-int8_edgetpu.tflite')
+    model = EdgeTPUModel('../models/best-int8_edgetpu.tflite')
     
     cam = cv2.VideoCapture('/dev/video1')
 

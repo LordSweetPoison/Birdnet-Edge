@@ -252,7 +252,7 @@ class ObjectDetector():
         elif device == 'TPU':
             from edgetpu import EdgeTPUModel
 
-            self.model = EdgeTPUModel('../models/{model_name}')
+            self.model = EdgeTPUModel(model_name)
             
             def run(image):
                 # resize 

@@ -209,7 +209,7 @@ if __name__ == "__main__":
         transforms.RandomHorizontalFlip(),
         transforms.RandomAffine(degrees = 0, translate=(.1, .1), scale = (.9, 1.1))
     ])
-    
+
     config = {
         "l2": tune.loguniform(1e-6, 1e-2),
         "lr": tune.loguniform(1e-4, 1e-1),
@@ -217,7 +217,7 @@ if __name__ == "__main__":
         "positive_scale": tune.uniform(.5, 4.)
     }
 
-    scheduler = AsyncHyperBandScheduler(
+    scheduler_ray = AsyncHyperBandScheduler(
         grace_period = 1,
         reduction_factor = 2),
         
@@ -231,7 +231,7 @@ if __name__ == "__main__":
         },
         mode = "min",
         num_samples = 5,
-        scheduler = scheduler
+        scheduler = scheduler_ray
     )
 
     

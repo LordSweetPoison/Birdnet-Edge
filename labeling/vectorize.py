@@ -192,6 +192,7 @@ def train_birds(config):
             opt = optimizer, 
             train_loader = train_loader, 
             transform_pipe = transform,
+            loss_fn = loss_fn,
             scheduler = scheduler)
 
         # report loss to tune

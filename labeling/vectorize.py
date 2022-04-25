@@ -5,7 +5,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data import Dataset, DataLoader
 
-from tqdm import tqdm
+from tqdm import tqdm, trange
 
 from torchvision import transforms
 from PIL import Image
@@ -162,6 +162,17 @@ def train_birds(config):
     momentum = config['momentum']
     l2 = config['l2']
 
+    # define transforms
+    transform = transforms.Compose([
+        transforms.ToTensor(),
+        transforms.RandomRotation(15),
+        transforms.RandomHorizontalFlip(),
+        transforms.RandomAffine(degrees = 0, translate = (.1, .1), scale = (.9, 1.1)),
+        transforms.RandomAdjustSharpness(3),
+        transforms.RandomPerspective(distortion_scale = 0.4, p = .5),
+        transforms.ColorJitter(brightness = .4, saturation = .4, hue = .1)
+    ])
+
     batch_size = 64
 
     # load in data 
@@ -197,21 +208,9 @@ def train_birds(config):
 
         # report loss to tune
         tune.report(train_loss = train_loss)
-        
 
-if __name__ == "__main__":
-    from models import convnext_base
-
-    transform = transforms.Compose([
-        transforms.ToTensor(),
-        transforms.RandomRotation(15),
-        transforms.RandomHorizontalFlip(),
-        transforms.RandomAffine(degrees = 0, translate = (.1, .1), scale = (.9, 1.1)),
-        transforms.RandomAdjustSharpness(3),
-        transforms.RandomPerspective(distortion_scale = 0.4, p = .5),
-        transforms.ColorJitter(brightness = .4, saturation = .4, hue = .1)
-    ])
-
+def hypsearch():
+    # define config 
     config = {
         "l2": tune.loguniform(1e-6, 1e-2),
         "lr": tune.loguniform(1e-4, 1e-1),
@@ -234,4 +233,68 @@ if __name__ == "__main__":
         scheduler = scheduler_ray,
     )
 
+    print("Best config is:", results.best_config)
+
+def main():
+    """does a distributed hyperparam search"""
+
+    # define hyperparameters 
+    lr = None
+    positive_scale = None
+    momentum = None
+    l2 = None
+
+    epochs = 10
+
+    # define transforms
+    transform = transforms.Compose([
+        transforms.ToTensor(),
+        transforms.RandomRotation(15),
+        transforms.RandomHorizontalFlip(),
+        transforms.RandomAffine(degrees = 0, translate = (.1, .1), scale = (.9, 1.1)),
+        transforms.RandomAdjustSharpness(3),
+        transforms.RandomPerspective(distortion_scale = 0.4, p = .5),
+        transforms.ColorJitter(brightness = .4, saturation = .4, hue = .1)
+    ])
+
+    batch_size = 64
+
+    # load in data 
+    with FileLock(os.path.expanduser("~/.data.lock")):
+        dataset = CustomDataSet('/home/ubuntu/Birdnet-Edge/segments')
+        train_loader = DataLoader(dataset, batch_size = batch_size, shuffle = True, 
+                                num_workers = 4, drop_last = True)
+
+    # define device to use a gpu if it is avialable 
+    device =  torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    
+    # use a convnext base pretrained but that also has my custom VectNext head 
+    model = convnext_base(pretrained = True).to(device)
+    model.train()
+
+    # define an optimizer 
+    optimizer = torch.optim.SGD(model.parameters(), lr, momentum, weight_decay = l2)
+
+    # create the loss and scale positive samples 
+    loss_fn = create_NCE_loss(positive_scale)
+
+    # schedule the search
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=len(train_loader), eta_min=0, last_epoch=-1)
+
+    for epoch in trange(epochs):
+        loss = train(
+            model = model, 
+            opt = optimizer, 
+            train_loader = train_loader, 
+            transform_pipe = transform,
+            loss_fn = loss_fn,
+            scheduler = scheduler)
+
+        print(f"Epoch {epoch + 1} / {epochs}: NCE Loss: {loss}")
+
+        
+
+
+if __name__ == "__main__":
+    hypsearch()
     

@@ -26,6 +26,8 @@ Start the web server
 nohup python3 server.py > server.out &
 # to view the output:
 tail -F server.out
+
+nohup python3 servertpu.py > server.out &
 ~~~
 
 

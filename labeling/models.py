@@ -100,6 +100,8 @@ class VectNeXt(nn.Module):
         self.head.weight.data.mul_(head_init_scale)
         self.head.bias.data.mul_(head_init_scale)
 
+        self.dims = dims
+
     def _init_weights(self, m):
         if isinstance(m, (nn.Conv2d, nn.Linear)):
             trunc_normal_(m.weight, std=.02)
@@ -175,12 +177,13 @@ def convnext_small(pretrained=False,in_22k=False, **kwargs):
     return model
 
 
-def convnext_base(pretrained=False, in_22k=False, **kwargs):
-    model = VectNeXt(depths=[3, 3, 27, 3], dims=[128, 256, 512, 1024], **kwargs)
+def convnext_base(pretrained=False, in_22k=False, latent_dims = 512, **kwargs):
+    model = VectNeXt(depths=[3, 3, 27, 3], dims=[128, 256, 512, 1024], latent_dims = 1000, **kwargs)
     if pretrained:
         url = model_urls['convnext_base_22k'] if in_22k else model_urls['convnext_base_1k']
         checkpoint = torch.hub.load_state_dict_from_url(url=url, map_location="cpu")
         model.load_state_dict(checkpoint["model"])
+    model.head = nn.Linear(model.dims[-1], latent_dims)
     return model
 
 

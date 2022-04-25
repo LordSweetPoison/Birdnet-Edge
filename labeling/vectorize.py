@@ -206,7 +206,10 @@ if __name__ == "__main__":
         transforms.ToTensor(),
         transforms.RandomRotation(15),
         transforms.RandomHorizontalFlip(),
-        transforms.RandomAffine(degrees = 0, translate=(.1, .1), scale = (.9, 1.1))
+        transforms.RandomAffine(degrees = 0, translate = (.1, .1), scale = (.9, 1.1)),
+        transforms.RandomAdjustSharpness(3),
+        transforms.RandomPerspective(distortion_scale = 0.4, p = .5),
+        transforms.ColorJitter(brightness = .4, saturation = .4, hue = .1)
     ])
 
     config = {

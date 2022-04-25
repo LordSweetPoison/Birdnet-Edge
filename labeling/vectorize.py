@@ -166,7 +166,7 @@ def train_birds(config):
 
     # load in data 
     with FileLock(os.path.expanduser("~/.data.lock")):
-        dataset = CustomDataSet('~/Birdnet-Edge/segments')
+        dataset = CustomDataSet('/home/ubuntu/Birdnet-Edge/segments')
         train_loader = DataLoader(dataset, batch_size = batch_size, shuffle = True, 
                                 num_workers = 4, drop_last = True)
 

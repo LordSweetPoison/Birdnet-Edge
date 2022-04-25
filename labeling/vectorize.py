@@ -206,10 +206,10 @@ if __name__ == "__main__":
     transform = transforms.Compose([
         transforms.ToTensor(),
         transforms.RandomRotation(15),
-        transforms.RandomAdjustSharpness(sharpness_factor=2),
         transforms.RandomHorizontalFlip(),
-        transforms.RandomAffine(translate=(.1, .1), scale = (.9, 1.1))
+        transforms.RandomAffine(degrees = 0, translate=(.1, .1), scale = (.9, 1.1))
     ])
+    
     config = {
         "l2": tune.loguniform(1e-6, 1e-2),
         "lr": tune.loguniform(1e-4, 1e-1),

@@ -15,7 +15,7 @@ import os
 from models import convnext_base
 import ray
 import ray.tune as tune
-from ray.tune.schedulers import AsyncHyperBandScheduler
+from ray.tune.schedulers import ASHAScheduler
 
 from PIL import Image
 
@@ -217,7 +217,7 @@ if __name__ == "__main__":
         "positive_scale": tune.uniform(.5, 4.)
     }
 
-    scheduler_ray = AsyncHyperBandScheduler(
+    scheduler_ray = ASHAScheduler(
         grace_period = 1,
         reduction_factor = 2),
         

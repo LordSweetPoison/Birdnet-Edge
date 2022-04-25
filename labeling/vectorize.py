@@ -1,7 +1,5 @@
 """Uses NCE loss and simclr method to vectorize images to a latent space"""
-from sched import scheduler
 from filelock import FileLock
-from sklearn.model_selection import train_test_split
 import torch 
 import torch.nn as nn
 import torch.nn.functional as F
@@ -25,7 +23,7 @@ class CustomDataSet(Dataset):
         self.root_dir = root_dir
         self.transform = transforms.Compose([
             transforms.ToTensor(),
-            transforms.Normalize(),
+            transforms.Normalize(0, 1),
             transforms.Resize((image_size, image_size))
         ])
         self.all_images = os.listdir(root_dir)
@@ -217,9 +215,7 @@ if __name__ == "__main__":
         "positive_scale": tune.uniform(.5, 4.)
     }
 
-    scheduler_ray = ASHAScheduler(
-        grace_period = 1,
-        reduction_factor = 2),
+    scheduler_ray = ASHAScheduler()
         
     results = tune.run(
         train_birds,
@@ -231,7 +227,7 @@ if __name__ == "__main__":
         },
         mode = "min",
         num_samples = 5,
-        scheduler = scheduler_ray
+        scheduler = scheduler_ray,
     )
 
     

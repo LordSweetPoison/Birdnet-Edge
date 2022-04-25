@@ -178,7 +178,7 @@ def train_birds(config):
     model.train()
 
     # define an optimizer 
-    optimizer = torch.optim.SGD(lr, momentum, weight_decay = l2)
+    optimizer = torch.optim.SGD(model.paramters(), lr, momentum, weight_decay = l2)
 
     # create the loss and scale positive samples 
     loss_fn = create_NCE_loss(positive_scale)

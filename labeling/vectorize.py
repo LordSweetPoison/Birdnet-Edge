@@ -1,6 +1,8 @@
 """Uses NCE loss and simclr method to vectorize images to a latent space"""
 from filelock import FileLock
 import torch 
+torch.cuda.empty_cache()
+
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data import Dataset, DataLoader
@@ -19,7 +21,7 @@ from PIL import Image
 
 class CustomDataSet(Dataset):
     """loades images from root dir"""
-    def __init__(self, root_dir, image_size = 224):
+    def __init__(self, root_dir, image_size = 224, return_filename = False):
         self.root_dir = root_dir
         self.transform = transforms.Compose([
             transforms.ToTensor(),
@@ -27,14 +29,21 @@ class CustomDataSet(Dataset):
             transforms.Resize((image_size, image_size))
         ])
         self.all_images = os.listdir(root_dir)
+        self.return_filename = return_filename
 
     def __len__(self):
         return len(self.all_images)
 
     def __getitem__(self, idx):
-        img_loc = os.path.join(self.root_dir, self.total_images[idx])
+        img_loc = os.path.join(self.root_dir, self.all_images[idx])
+        
         image = Image.open(img_loc).convert("RGB")
+        
         tensor_image = self.transform(image)
+        
+        if self.return_filename:
+            return tensor_image, self.all_images[idx]
+        
         return tensor_image
 
 # vmap to allow batching, increases parrelism 
@@ -89,11 +98,8 @@ def process_images(images, model, device, transform_pipe, transforms = 4):
 
     assert batch_size % transforms == 0, f'batch size must be divisable by transforms instead: batch size: {batch_size} transforms: {transforms}'
 
-    # load images to device
-    images = images.to(device)
-
     # apply transforms, images will be shape (2 * batchsize, ...)
-    images = torch.concat([transform_pipe(images) for _ in range(2)], axis = 0)
+    images = torch.concat([transform_pipe(images) for _ in range(2)], axis = 0).to(device) 
     
     # run model, latent_spaces shape: (2 * batch_size, laten dims)
     latent_spaces = model(images)
@@ -113,7 +119,7 @@ def process_images(images, model, device, transform_pipe, transforms = 4):
 
     return latent_spaces
 
-def train(model, opt, train_loader, device, transform_pipe, loss_fn, scheduler = None):
+def train(model, opt, train_loader, device, transform_pipe, loss_fn, scheduler = None, wrapper = range):
     """trains a model to vectorize images"""
 
     # put model on device
@@ -121,7 +127,7 @@ def train(model, opt, train_loader, device, transform_pipe, loss_fn, scheduler =
 
     train_loss = 0
 
-    for images, _ in train_loader:
+    for images in tqdm(train_loader):
         # process images 
         latent_spaces = process_images(images, model, device, transform_pipe)
 
@@ -153,6 +159,9 @@ def train(model, opt, train_loader, device, transform_pipe, loss_fn, scheduler =
     # return train loss for this epoch
     return train_loss
 
+from ray.tune.integration.wandb import wandb_mixin
+
+@wandb_mixin
 def train_birds(config):
     """does a distributed hyperparam search"""
 
@@ -164,7 +173,6 @@ def train_birds(config):
 
     # define transforms
     transform = transforms.Compose([
-        transforms.ToTensor(),
         transforms.RandomRotation(15),
         transforms.RandomHorizontalFlip(),
         transforms.RandomAffine(degrees = 0, translate = (.1, .1), scale = (.9, 1.1)),
@@ -173,7 +181,7 @@ def train_birds(config):
         transforms.ColorJitter(brightness = .4, saturation = .4, hue = .1)
     ])
 
-    batch_size = 64
+    batch_size = 8
 
     # load in data 
     with FileLock(os.path.expanduser("~/.data.lock")):
@@ -197,6 +205,7 @@ def train_birds(config):
     # schedule the search
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=len(train_loader), eta_min=0, last_epoch=-1)
 
+    epoch = 0
     while True:
         train_loss = train(
             model = model, 
@@ -204,10 +213,16 @@ def train_birds(config):
             train_loader = train_loader, 
             transform_pipe = transform,
             loss_fn = loss_fn,
+            device = device,
             scheduler = scheduler)
-
+        
+        epoch += 1
+        
         # report loss to tune
-        tune.report(train_loss = train_loss)
+        tune.report(train_loss = train_loss, epoch = epoch)
+        
+        
+
 
 def hypsearch():
     # define config 
@@ -215,40 +230,41 @@ def hypsearch():
         "l2": tune.loguniform(1e-6, 1e-2),
         "lr": tune.loguniform(1e-4, 1e-1),
         "momentum": tune.uniform(.1, .99),
-        "positive_scale": tune.uniform(.5, 4.)
+        "positive_scale": 1,
+        # wandb configuration
+        "wandb": {
+            "project": "VextNeXt",
+            "api_key_file": "/home/ubuntu/Birdnet-Edge/labeling/wandbkey",
+            
+        }
     }
 
     scheduler_ray = ASHAScheduler()
+    
+    # declare stop function 
+    def stop_fn(id, result):
+        if result["train_loss"] > .5: 
+            return True
+        return result['epoch'] >= 1
         
     results = tune.run(
         train_birds,
-        resources_per_trial = {"cpu":4, "gpu": 1 if torch.cuda.is_available() else 0},
+        resources_per_trial = {"cpu": 4, "gpu": 1 if torch.cuda.is_available() else 0},
         config = config,
         metric = "train_loss",
-        stop={
-            "training_iteration": 1
-        },
+        stop = stop_fn,
         mode = "min",
-        num_samples = 5,
+        num_samples = 15,
         scheduler = scheduler_ray,
     )
 
     print("Best config is:", results.best_config)
 
-def main():
+def main(lr, l2, momentum, positive_scale, epochs = 10):
     """does a distributed hyperparam search"""
-
-    # define hyperparameters 
-    lr = None
-    positive_scale = None
-    momentum = None
-    l2 = None
-
-    epochs = 10
 
     # define transforms
     transform = transforms.Compose([
-        transforms.ToTensor(),
         transforms.RandomRotation(15),
         transforms.RandomHorizontalFlip(),
         transforms.RandomAffine(degrees = 0, translate = (.1, .1), scale = (.9, 1.1)),
@@ -257,7 +273,7 @@ def main():
         transforms.ColorJitter(brightness = .4, saturation = .4, hue = .1)
     ])
 
-    batch_size = 64
+    batch_size = 8
 
     # load in data 
     with FileLock(os.path.expanduser("~/.data.lock")):
@@ -281,20 +297,59 @@ def main():
     # schedule the search
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=len(train_loader), eta_min=0, last_epoch=-1)
 
-    for epoch in trange(epochs):
+    for epoch in range(epochs):
         loss = train(
             model = model, 
             opt = optimizer, 
             train_loader = train_loader, 
             transform_pipe = transform,
             loss_fn = loss_fn,
+            device = device,
             scheduler = scheduler)
 
         print(f"Epoch {epoch + 1} / {epochs}: NCE Loss: {loss}")
-
-        
-
-
-if __name__ == "__main__":
-    hypsearch()
     
+    torch.save({
+            'model_state_dict': model.state_dict(),
+            'optimizer_state_dict': optimizer.state_dict(),
+    }, 'VectModel.pt')
+    
+    
+def vectorize(model_path = 'VectModel.pt'):
+    # create dataloaders
+    dataset = CustomDataSet('/home/ubuntu/Birdnet-Edge/segments', return_filename = True)
+    loader = DataLoader(dataset, batch_size = 8, shuffle = False, 
+                                num_workers = 4, drop_last = False)
+    # define device to use a gpu if it is avialable 
+    device =  torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    
+    # load in model
+    model = convnext_base().to(device)
+    model.eval()
+    
+    checkpoint = torch.load(model_path)
+    model.load_state_dict(checkpoint['model_state_dict'])
+    
+    # define list of vectors 
+    vectors = []
+    filenames = []
+    
+    with torch.no_grad():
+        for images, filename in tqdm(loader):
+            images = images.to(device)
+            
+            # process images 
+            latent_spaces = model(images)
+            
+            # append vectors onto the list 
+            vectors.append(latent_spaces)
+            
+            filenames.extend(list(filename))
+            
+    # stack vectors to be a N x M vecotrs
+    vectors = torch.concat(vectors)
+    
+    return vectors, filenames
+    
+if __name__ == "__main__":
+    main(lr = 0.0002, l2 = 5e-5, momentum = .7, positive_scale = 1, epochs = 8)

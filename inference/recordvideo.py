@@ -51,7 +51,7 @@ def get_video_type(filename):
 object_detector = ObjectDetector('../models/best-int8_edgetpu.tflite', device = 'TPU', conf_threshold = .4, num_classes = 1, img_size = 448)
 
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture('/dev/video1')
 out = cv2.VideoWriter(filename, get_video_type(filename), 25, get_dims(cap, res))
 
 for i in range(400):

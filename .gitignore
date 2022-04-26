@@ -39,3 +39,4 @@
 !labeling/vectorize.py
 !labeling/models.py
 !labeling/README.md
+!labeling/record_video.py

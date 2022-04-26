@@ -18,6 +18,7 @@
 !inference/edgetpu.py
 !inference/servertpu.py
 !inference/upload.py
+!inference/recordvideo.py
 
 # training files not to ignore 
 !train
@@ -39,4 +40,4 @@
 !labeling/vectorize.py
 !labeling/models.py
 !labeling/README.md
-!labeling/record_video.py
+

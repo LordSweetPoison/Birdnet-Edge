@@ -40,7 +40,7 @@ def async_upload_photo(image, objects):
         to_post.seek(0)
 
         # post the segments 
-        filepath = f'segments/{photo_name}_{obj[0]:.4}_{obj[1]:.4}_{obj[2]:.4}_{obj[3]:.4}'.replace('0.', '') + extention
+        filepath = f'segments/{photo_name}_{obj[0]:.4}_{obj[1]:.4}_{obj[2]:.4}_{obj[3]:.4}'.replace('0.', '').replace('1.', '') + extention
         S3.upload_fileobj(to_post, S3_BUCKET, filepath)
 
     # encode the image into a buffer

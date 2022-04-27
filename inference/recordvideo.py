@@ -1,7 +1,6 @@
 import numpy as np
 import os
 import cv2
-from torch import det
 from infer import ObjectDetector
 
 
@@ -62,7 +61,7 @@ for i in range(400):
 
     # get the image with bounding boxes and post that online
     detections, objects = object_detector(frame, return_boxes = True)
-    
+
     detections = cv2.cvtColor(detections, cv2.COLOR_RGB2BGR)
     out.write(detections)
 

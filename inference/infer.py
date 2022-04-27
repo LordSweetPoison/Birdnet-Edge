@@ -188,7 +188,7 @@ def draw_boxes(img, objects, num_classes = 80):
         xmin, ymin, xmax, ymax = int(obj[0] * width), int(obj[1] * height), int(obj[2] * width), int(obj[3] * height)
 
         # plot the rectangle and add a text label bellow
-        cv2.rectangle(result, (xmin, ymin), (xmax, ymax), color, 1)
+        cv2.rectangle(result, (xmin, ymin), (xmax, ymax), color, 5)
         cv2.putText(result, f"{int(obj[5])} @ {obj[4]:.1%}",
             (xmin, ymin),
             cv2.FONT_HERSHEY_SIMPLEX,

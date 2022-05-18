@@ -1,6 +1,6 @@
 import cv2
 from datetime import datetime 
-import boto3
+# import boto3
 from io import BytesIO
 from PIL import Image
 import numpy as np

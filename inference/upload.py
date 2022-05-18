@@ -1,9 +1,9 @@
 
 from celery import Celery
 from config import ACCESS_KEY_ID, SECRET_ACCESS_KEY
-import boto3
+# import boto3
 from datetime import datetime 
-import boto3
+# import boto3
 from io import BytesIO
 from PIL import Image
 import numpy as np
